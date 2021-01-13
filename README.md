@@ -17,9 +17,24 @@ npm install --global expo-cli
 expo start
 ```
 
+
+## Authors
+
+👤 **Robert Goodman**
+
+👤 **Megs Yadhav**
+
+👤 **Hamilton Vuu**
+
+👤 **Jeff Lau**
+
+
+---
+
 ## Show your support
 
 Give a ⭐️ if this project helped you!
 
-***
+---
+
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
