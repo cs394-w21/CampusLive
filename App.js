@@ -7,7 +7,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>This is Robert Goodman's first commit!</Text>
       <Text style={styles.hamilton}>This is Hamilton Vuu's first commit!</Text>
-      <Text style={styles.megs}>This is Megs Yadav's first commit! </Text>
+      <Text style={styles.megs}>This is Megs Yadav's first commit!</Text>
       <StatusBar style="auto" />
     </View>
   );
