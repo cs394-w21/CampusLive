@@ -1,14 +1,14 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import EventSelector from "./components/EventSelector";
 
 export default function App() {
+  const [events, setEvents] = useState({ title: "", time: Date.now() });
+
   return (
     <View style={styles.container}>
-      <Text>This is Robert Goodman's first commit!</Text>
-      <Text style={styles.hamilton}>This is Hamilton Vuu's first commit!</Text>
-      <Text style={styles.megs}>This is Megs Yadav's first commit!</Text>
-      <Text> Jeff's first commit</Text>
+      <EventSelector event={events} />
       <StatusBar style="auto" />
     </View>
   );
