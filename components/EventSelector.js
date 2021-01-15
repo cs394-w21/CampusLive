@@ -8,10 +8,9 @@ import {
   Text,
 } from "react-native";
 
-const Field = ({ label, value }) => {
+const Field = ({ value }) => {
   return (
     <View>
-      <Text>{label}</Text>
       <Text>{value}</Text>
     </View>
   );
@@ -19,18 +18,18 @@ const Field = ({ label, value }) => {
 
 const EventSelector = ({ event }) => {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
       <ScrollView>
-        <Field label="Title" value="Some Event" />
-        <Field label="Meeting times" value="Today" />
-        <Field label="Where" value="Tech" />
-        <View>
-          <Button type="submit" name="btn" value="No">
-            No
-          </Button>
-          <Button type="submit" name="btn" value="Yes">
-            Yes
-          </Button>
+      <View style={styles.container}>
+        <Field style={styles.fields} value="Some Event" />
+        <Field style={styles.fields} value="Today" />
+        <Field style={styles.fields} value="Tech" />
+        <Field style={styles.fields} value="Description" />
+        <View style={styles.buttonView}>
+          <Button title="no" type="submit" name="btn" value="No"/>
+          <Button title="yes" type="submit" name="btn" value="Yes"/>
+        </View>
+        
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -43,6 +42,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    borderColor: "black",
+    borderWidth: 5,
+    margin: 10,
+    width: 100
+
+  },
+  fields:{
+    margin: 10
+  },
+  buttonView:{
+    flex:1,
+    flexDirection: "row",
+
   },
 });
 
