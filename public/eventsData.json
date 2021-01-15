@@ -1,0 +1,19 @@
+{
+    "title": "Northwestern Events",
+    "events": {
+        "E1": {
+            "id": "E1",
+            "title": "Dance Marathon",
+            "time": "Forever",
+            "location": "Norris",
+            "description": "Hell"
+        },
+        "E2": {
+            "id": "E2",
+            "title": "Football Game",
+            "time": "evening",
+            "location": "stadium",
+            "description": "not hell"
+        }
+    }
+}

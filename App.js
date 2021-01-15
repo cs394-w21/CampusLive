@@ -2,13 +2,17 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import EventSelector from "./components/EventSelector";
+import eventsData from "./public/eventsData";
 
 export default function App() {
-  const [events, setEvents] = useState({ title: "", time: Date.now() });
+  const [events, setEvents] = useState(eventsData.events);
 
   return (
     <View style={styles.container}>
-      <EventSelector event={events} />
+      <Text>
+        {eventsData.title}
+      </Text>
+      <EventSelector events = {events}/>
       <StatusBar style="auto" />
     </View>
   );
