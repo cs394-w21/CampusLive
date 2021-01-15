@@ -5,7 +5,10 @@ import {
   Button,
   View,
   Text,
+  Alert,
 } from "react-native";
+
+
 
 const Field = ({ value }) => {
   return (
@@ -16,6 +19,12 @@ const Field = ({ value }) => {
 };
 
 const EventDetails = ({ event }) => {
+  const onNoPress = () => {
+    console.log("No")
+  }
+  const onYesPress = () => {
+    console.log("Yes")
+  }
   return (
       <View style={styles.container}>
         <Field style={styles.fields} value={event.title} />
@@ -23,12 +32,13 @@ const EventDetails = ({ event }) => {
         <Field style={styles.fields} value={event.location} />
         <Field style={styles.fields} value={event.description} />
         <View style={styles.buttonView}>
-          <Button title="no" type="submit" name="btn" value="No"/>
-          <Button title="yes" type="submit" name="btn" value="Yes"/>
+          <Button onPress = {onNoPress} title="no" type="submit" name="btn" value="No"/>
+          <Button onPress ={onYesPress} title="yes" type="submit" name="btn" value="Yes"/>
         </View>
         
         </View>
   );
+
 };
 
 const styles = StyleSheet.create({

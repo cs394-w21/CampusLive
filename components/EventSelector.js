@@ -4,8 +4,10 @@ import {
   ScrollView,
 } from "react-native";
 
+
 const EventSelector = ({ events }) => {
   const [event, setEvent] = useState(events.E1);
+  console.log("test")
   return (
       <ScrollView>
         <EventDetails event = {event}/>
