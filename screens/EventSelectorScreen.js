@@ -1,7 +1,5 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 import { StyleSheet, Text, View, SafeAreaView, Dimensions } from "react-native";
 import EventSelector from "../components/EventSelector";
 import {firebase} from "../utils/firebase";

@@ -6,17 +6,12 @@ import {
   View,
   Dimensions
 } from "react-native";
+import Field from "../components/Field.js"
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const Field = ({ value }) => {
-  return (
-    <View style={styles.fields}>
-      <Text>{value}</Text>
-    </View>
-  );
-};
+
 
 const EventEndScreen = ({  }) => {
   return (

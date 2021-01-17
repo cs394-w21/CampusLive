@@ -17,6 +17,7 @@ const EventSelector = ({ navigation, events }) => {
   const updateEvent = () => {
     if (eventIndex + 1 === keys.length) {
       navigation.navigate("EventEndScreen");
+      setEventIndex(0);
     } else { 
         setEventIndex(eventIndex + 1);
     }

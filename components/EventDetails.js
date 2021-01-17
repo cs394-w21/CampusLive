@@ -8,17 +8,20 @@ import {
   Alert,
   Dimensions,
 } from "react-native";
+import Field from "../components/Field.js"
+import EventFields from "../components/EventFields.js"
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-
-const Field = ({ value }) => {
+const TitleField = ({ value }) => {
   return (
-    <View style={styles.fields}>
-      <Text>{value}</Text>
+    <View >
+      <Text style={styles.title}>{value}</Text>
     </View>
   );
 };
+
 
 const EventDetails = ({ event, eventIndex, updateEvent }) => {
   const onNoPress = () => {
@@ -27,11 +30,13 @@ const EventDetails = ({ event, eventIndex, updateEvent }) => {
   const onYesPress = () => {
     updateEvent();
   }
+  
+
   return (
       <View style={styles.container}>
-        <Field value={event.title} />
-        <Field value={event.time} />
-        <Field value={event.location} />
+        <TitleField value={event.title} />
+        <EventFields textValue={event.time} iconValue = "calendar"/>
+        <EventFields textValue={event.location} iconValue = "location-pin" />
         <Field value={event.description} />
         <View style={styles.buttonView}>
           <Button onPress = {onNoPress} title="no" type="submit" name="btn" value="No"/>
@@ -58,6 +63,11 @@ const styles = StyleSheet.create({
   },
   fields:{
     padding: 10
+  },
+  title:{
+    color:'#4E2A84',
+    fontFamily:'campton',
+    fontSize: 40
   },
   buttonView:{
     flex:1,
