@@ -4,6 +4,8 @@ import {
   ScrollView,
   Text
 } from "react-native";
+import EventEnd from "../screens/EventEnd.js"
+
 
 
 const EventSelector = ({ events }) => {
@@ -14,12 +16,22 @@ const EventSelector = ({ events }) => {
   const keys = Object.keys(events);
   const [eventIndex, setEventIndex] = useState(0);
   const key = keys[eventIndex];
-  return (
-      <ScrollView>
-        <EventDetails event = {events[key]}
+  const showEvents = () => {
+    if (eventIndex === keys.length) {
+      console.log("1")
+      return <EventEnd/>
+    } else {
+      console.log("2")
+      return <EventDetails event = {events[key]}
                       eventIndex = {eventIndex}
                       setEventIndex = {setEventIndex}
                        />
+    }
+  }
+   
+  return (
+      <ScrollView>
+        {showEvents}
       </ScrollView>
   );
 };
