@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, StyleSheet, SafeAreaView, View } from "react-native";
-import Field from "../components/Field.js";
+import Field from "../components/Field";
 
 const EventEndScreen = ({ navigation }) => {
   const buttonPress = () => {

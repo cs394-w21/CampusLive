@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Button, View, Text } from "react-native";
-import Field from "../components/Field.js";
-import EventField from "../components/EventField.js";
+import Field from "../components/Field";
+import EventField from "../components/EventField";
 import { windowWidth } from "../constants/WindowSize";
 
 const TitleField = ({ value }) => {
