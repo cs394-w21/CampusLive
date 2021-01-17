@@ -12,7 +12,7 @@ import {
 
 const Field = ({ value }) => {
   return (
-    <View>
+    <View style={styles.fields}>
       <Text>{value}</Text>
     </View>
   );
@@ -27,10 +27,10 @@ const EventDetails = ({ event, eventIndex, setEventIndex }) => {
   }
   return (
       <View style={styles.container}>
-        <Field style={styles.fields} value={event.title} />
-        <Field style={styles.fields} value={event.time} />
-        <Field style={styles.fields} value={event.location} />
-        <Field style={styles.fields} value={event.description} />
+        <Field value={event.title} />
+        <Field value={event.time} />
+        <Field value={event.location} />
+        <Field value={event.description} />
         <View style={styles.buttonView}>
           <Button onPress = {onNoPress} title="no" type="submit" name="btn" value="No"/>
           <Button onPress ={onYesPress} title="yes" type="submit" name="btn" value="Yes"/>
