@@ -4,11 +4,8 @@ import {
   ScrollView,
   Text
 } from "react-native";
-import EventEnd from "../screens/EventEnd.js"
 
-
-
-const EventSelector = ({ events }) => {
+const EventSelector = ({ navigation, events }) => {
   if (!events) return (
   <Text>
     {'Loading...'}
@@ -16,22 +13,21 @@ const EventSelector = ({ events }) => {
   const keys = Object.keys(events);
   const [eventIndex, setEventIndex] = useState(0);
   const key = keys[eventIndex];
-  const showEvents = () => {
-    if (eventIndex === keys.length) {
-      console.log("1")
-      return <EventEnd/>
-    } else {
-      console.log("2")
-      return <EventDetails event = {events[key]}
-                      eventIndex = {eventIndex}
-                      setEventIndex = {setEventIndex}
-                       />
+
+  const updateEvent = () => {
+    if (eventIndex + 1 === keys.length) {
+      navigation.navigate("EventEndScreen");
+    } else { 
+        setEventIndex(eventIndex + 1);
     }
   }
    
   return (
       <ScrollView>
-        {showEvents}
+        <EventDetails event = {events[key]}
+                      eventIndex = {eventIndex}
+                      updateEvent = {updateEvent}
+                       />
       </ScrollView>
   );
 };

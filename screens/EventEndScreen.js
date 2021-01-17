@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   ScrollView,
-  Button,
-  View,
   Text,
-  Alert,
-  Dimensions,
+  View,
+  Dimensions
 } from "react-native";
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
 
 const Field = ({ value }) => {
   return (
@@ -20,27 +18,14 @@ const Field = ({ value }) => {
   );
 };
 
-const EventDetails = ({ event, eventIndex, updateEvent }) => {
-  const onNoPress = () => {
-    updateEvent();
-  }
-  const onYesPress = () => {
-    updateEvent();
-  }
+const EventEndScreen = ({  }) => {
   return (
-      <View style={styles.container}>
-        <Field value={event.title} />
-        <Field value={event.time} />
-        <Field value={event.location} />
-        <Field value={event.description} />
-        <View style={styles.buttonView}>
-          <Button onPress = {onNoPress} title="no" type="submit" name="btn" value="No"/>
-          <Button onPress ={onYesPress} title="yes" type="submit" name="btn" value="Yes"/>
-        </View>
-        
-      </View>
+    <View>
+    <Field value= "No more events to view" >
+    </Field>
+    </View>
+      
   );
-
 };
 
 const styles = StyleSheet.create({
@@ -68,4 +53,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EventDetails;
+export default EventEndScreen;
+
