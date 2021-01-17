@@ -1,53 +1,48 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { StyleSheet, Text, View, SafeAreaView, Dimensions } from "react-native";
-import EventSelector from "./components/EventSelector";
-import eventsData from "./public/eventsData";
-import {firebase} from "./utils/firebase";
+import { StyleSheet } from "react-native";
+import { firebase } from "./utils/firebase";
 import EventSelectorScreen from "./screens/EventSelectorScreen";
 import EventEndScreen from "./screens/EventEndScreen";
-
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+import { windowWidth } from "./constants/WindowSize";
+import UserContext from "./UserContext";
 
 const Stack = createStackNavigator();
 
 export default function App() {
+  const [user, setUser] = useState(null);
+
   return (
-    <NavigationContainer>
-        <Stack.Navigator>
+    <UserContext.Provider value={user}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen
             name="EventSelectorScreen"
             component={EventSelectorScreen}
-            // options={{ title: "Event Selectors" }}
-            options={({ navigation }) => ({
-              title: "Event Selectors"
-            })}
+            options={{ title: "Event Selectors" }}
           />
           <Stack.Screen
             name="EventEndScreen"
             component={EventEndScreen}
-            // options={{ title: "Event End" }}
+            options={{ title: "Event End" }}
           />
         </Stack.Navigator>
       </NavigationContainer>
+    </UserContext.Provider>
   );
 }
 
 const styles = StyleSheet.create({
-  header:{
-
-    backgroundColor: '#4E2A84',
+  header: {
+    backgroundColor: "#4E2A84",
     width: windowWidth,
   },
-  headerText:{
-    fontFamily:'campton',
+  headerText: {
+    fontFamily: "campton",
     fontSize: 32,
     padding: 10,
-    color: 'white',
+    color: "white",
   },
   container: {
     flex: 1,
@@ -55,5 +50,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  
 });
