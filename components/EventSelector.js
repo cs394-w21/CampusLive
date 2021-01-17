@@ -6,11 +6,15 @@ import {
 
 
 const EventSelector = ({ events }) => {
-  const [event, setEvent] = useState(events.E1);
-  console.log("test")
+  const keys = Object.keys(events)
+  const [eventIndex, setEventIndex] = useState(0);
+  const key = keys[eventIndex]
   return (
       <ScrollView>
-        <EventDetails event = {event}/>
+        <EventDetails event = {events[key]}
+                      eventIndex = {eventIndex}
+                      setEventIndex = {setEventIndex}
+                       />
       </ScrollView>
   );
 };

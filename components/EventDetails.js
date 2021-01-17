@@ -18,12 +18,12 @@ const Field = ({ value }) => {
   );
 };
 
-const EventDetails = ({ event }) => {
+const EventDetails = ({ event, eventIndex, setEventIndex }) => {
   const onNoPress = () => {
-    console.log("No")
+    setEventIndex(eventIndex + 1);
   }
   const onYesPress = () => {
-    console.log("Yes")
+    setEventIndex(eventIndex + 1);
   }
   return (
       <View style={styles.container}>
