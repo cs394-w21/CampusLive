@@ -11,8 +11,8 @@ const windowHeight = Dimensions.get('window').height;
 
 
 export default function App() {
-  const [events, setEvents] = useState(eventsData.events);
-
+  const [events, setEvents] = useState();
+  
   useEffect(() => {
     const db = firebase.database().ref();
     const handleData = snap => {
@@ -22,13 +22,15 @@ export default function App() {
     return () => { db.off('value',handleData); };
   }, []);
 
-  console.log(events)
+  const renderEventSelector = (events) => {
+
+  } 
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>
-          {eventsData.title}
+          {'Northwestern Events'}
         </Text>
       </View>
       

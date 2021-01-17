@@ -6,8 +6,10 @@ import {
   View,
   Text,
   Alert,
+  Dimensions,
 } from "react-native";
-
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 
 const Field = ({ value }) => {
@@ -36,7 +38,7 @@ const EventDetails = ({ event, eventIndex, setEventIndex }) => {
           <Button onPress ={onYesPress} title="yes" type="submit" name="btn" value="Yes"/>
         </View>
         
-        </View>
+      </View>
   );
 
 };
@@ -50,16 +52,19 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 5,
     margin: 10,
-    width: 100
+    width: windowWidth*0.8,
+    marginTop: 50
 
   },
   fields:{
-    margin: 10
+    padding: 10
   },
   buttonView:{
     flex:1,
     flexDirection: "row",
-
+    width: windowWidth*0.5,
+    justifyContent: 'space-evenly',
+    padding: 10
   },
 });
 
