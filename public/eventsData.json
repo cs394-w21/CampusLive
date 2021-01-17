@@ -4,16 +4,36 @@
         "E1": {
             "id": "E1",
             "title": "Dance Marathon",
+            "host": "NUDM",
             "time": "Forever",
             "location": "Norris",
-            "description": "Hell"
+            "description": "Hell",
+            "img": "",
+            "url": "",
+            "socials": {
+                "twitter": "",
+                "instagram": "",
+                "facebook": "",
+                "linkedIn": ""
+            },
+            "tags": []
         },
         "E2": {
             "id": "E2",
             "title": "Football Game",
+            "host": "northwestern athletics",
             "time": "evening",
             "location": "stadium",
-            "description": "not hell"
+            "description": "not hell",
+            "img": "",
+            "url": "",
+            "socials": {
+                "twitter": "",
+                "instagram": "",
+                "facebook": "",
+                "linkedIn": ""
+            },
+            "tags": []
         }
     }
 }
