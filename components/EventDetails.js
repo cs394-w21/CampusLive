@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Button, View, Text } from "react-native";
 import Field from "../components/Field";
 import EventField from "../components/EventField";

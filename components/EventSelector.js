@@ -6,6 +6,7 @@ const EventSelector = ({ navigation, events }) => {
   if (!events) {
     return <Text>{"Loading..."}</Text>;
   }
+
   const eventKeys = Object.keys(events);
   const [eventIndex, setEventIndex] = useState(0);
   const event = eventKeys[eventIndex];

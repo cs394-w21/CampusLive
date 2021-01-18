@@ -5,6 +5,7 @@ import EventSelector from "../components/EventSelector";
 import { firebase } from "../utils/firebase";
 import Banner from "../components/Banner";
 
+// TODO: Move event pull to app.js because we might also need to populate a calendar. Selector screen will be passed what events to be shown.
 const EventSelectorScreen = ({ navigation }) => {
   const [events, setEvents] = useState();
 

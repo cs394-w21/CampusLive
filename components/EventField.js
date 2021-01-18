@@ -2,6 +2,7 @@ import React from "react";
 import { Text, StyleSheet, View } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 
+// TODO: Anchor icons so it doesn't move when swiping
 const EventField = ({ text, icon }) => {
   return (
     <View style={styles.fieldContainer}>
