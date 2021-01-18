@@ -12,7 +12,7 @@ const Stack = createStackNavigator();
 
 export default function App() {
   const [user, setUser] = useState(null);
-  const [eventsSelected, setNoEvents] = useState([]);
+  const [eventsSelected, setEventsSelected] = useState({ "Yes": [], "No": [] });
 
   return (
     <UserContext.Provider value={user}>

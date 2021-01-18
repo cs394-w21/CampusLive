@@ -2,7 +2,9 @@ import React from "react";
 import { Button, StyleSheet, SafeAreaView, View } from "react-native";
 import Field from "../components/Field";
 
-const EventEndScreen = ({ navigation }) => {
+const EventEndScreen = ({ navigation, route }) => {
+  const eventsSelected = route.params.eventsSelected;
+  console.log(eventsSelected)
   const buttonPress = () => {
     navigation.goBack();
   };

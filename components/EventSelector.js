@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import EventDetails from "./EventDetails";
 import { ScrollView, Text } from "react-native";
 
-const EventSelector = ({ navigation, events }) => {
+const EventSelector = ({ navigation, events, eventsSelected, setEventsSelected }) => {
   if (!events) {
     return <Text>{"Loading..."}</Text>;
   }
@@ -13,7 +13,7 @@ const EventSelector = ({ navigation, events }) => {
 
   const updateEvent = () => {
     if (eventIndex + 1 === eventKeys.length) {
-      navigation.navigate("EventEndScreen");
+      navigation.navigate("EventEndScreen", { eventsSelected });
       setEventIndex(0);
     } else {
       setEventIndex(eventIndex + 1);
@@ -22,7 +22,10 @@ const EventSelector = ({ navigation, events }) => {
 
   return (
     <ScrollView>
-      <EventDetails event={events[event]} updateEvent={updateEvent} />
+      <EventDetails event={events[event]}
+        updateEvent={updateEvent}
+        eventsSelected={eventsSelected}
+        setEventsSelected={setEventsSelected} />
     </ScrollView>
   );
 };

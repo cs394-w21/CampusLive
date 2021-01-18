@@ -3,6 +3,7 @@ import { StyleSheet, Button, View, Text } from "react-native";
 import Field from "../components/Field";
 import EventField from "../components/EventField";
 import { windowWidth } from "../constants/WindowSize";
+import EventsContext from "../utils/EventsContext";
 
 const TitleField = ({ value }) => {
   return (
@@ -12,11 +13,19 @@ const TitleField = ({ value }) => {
   );
 };
 
-const EventDetails = ({ event, updateEvent }) => {
+const EventDetails = ({ event, updateEvent, eventsSelected, setEventsSelected }) => {
   const onNoPress = () => {
+    setEventsSelected({
+      "Yes": eventsSelected.Yes,
+      "No": [...eventsSelected.No, event]
+    })
     updateEvent();
   };
   const onYesPress = () => {
+    setEventsSelected({
+      "Yes": [...eventsSelected.Yes, event],
+      "No": eventsSelected.No
+    })
     updateEvent();
   };
 
