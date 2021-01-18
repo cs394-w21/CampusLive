@@ -61,11 +61,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    borderColor: "black",
-    borderWidth: 5,
+    borderRadius:5,
     margin: 10,
     width: windowWidth * 0.8,
     marginTop: 50,
+    shadowColor: "#000",
+    shadowOffset: {
+	    width: 0,
+	    height: 4,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
+    padding:15
   },
   fields: {
     padding: 10,
