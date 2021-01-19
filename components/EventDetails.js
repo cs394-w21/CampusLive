@@ -13,20 +13,9 @@ const TitleField = ({ value }) => {
   );
 };
 
-const EventDetails = ({ event, updateEvent, eventsSelected, setEventsSelected }) => {
-  const onNoPress = () => {
-    setEventsSelected({
-      "Yes": eventsSelected.Yes,
-      "No": [...eventsSelected.No, event]
-    })
-    updateEvent();
-  };
-  const onYesPress = () => {
-    setEventsSelected({
-      "Yes": [...eventsSelected.Yes, event],
-      "No": eventsSelected.No
-    })
-    updateEvent();
+const EventDetails = ({ event, handleEventChoice }) => {
+  const eventButtonPress = (event) => {
+    handleEventChoice(event.target.textContent === "yes");
   };
 
   return (
@@ -37,14 +26,14 @@ const EventDetails = ({ event, updateEvent, eventsSelected, setEventsSelected })
       <Field value={event.description} />
       <View style={styles.buttonView}>
         <Button
-          onPress={onNoPress}
+          onPress={eventButtonPress}
           title="no"
           type="submit"
           name="btn"
           value="No"
         />
         <Button
-          onPress={onYesPress}
+          onPress={eventButtonPress}
           title="yes"
           type="submit"
           name="btn"
@@ -61,18 +50,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius:5,
+    borderRadius: 5,
     margin: 10,
     width: windowWidth * 0.8,
     marginTop: 50,
     shadowColor: "#000",
     shadowOffset: {
-	    width: 0,
-	    height: 4,
+      width: 0,
+      height: 4,
     },
     shadowOpacity: 0.5,
     shadowRadius: 10,
-    padding:15
+    padding: 15,
   },
   fields: {
     padding: 10,

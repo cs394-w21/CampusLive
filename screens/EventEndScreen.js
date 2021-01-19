@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, StyleSheet, SafeAreaView, View } from "react-native";
 import Field from "../components/Field";
+import EventsContext from "../utils/EventsContext";
 
 const EventEndScreen = ({ navigation, route }) => {
-  const eventsSelected = route.params.eventsSelected;
-  console.log(eventsSelected)
+  const events = useContext(EventsContext).events;
   const buttonPress = () => {
     navigation.goBack();
   };
