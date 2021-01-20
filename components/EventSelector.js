@@ -65,6 +65,7 @@ const EventSelector = ({ navigation }) => {
   };
 
   return (
+    <View style={styles.container}>
     <ScrollView>
       <EventDisplay
         dispEvents={dispEvents}
@@ -74,7 +75,12 @@ const EventSelector = ({ navigation }) => {
       />
       <ChoiceDisplay events={events} />
     </ScrollView>
+    </View>
   );
 };
-
+const styles = StyleSheet.create({
+  container: {
+    flex:1,
+  },
+});
 export default EventSelector;

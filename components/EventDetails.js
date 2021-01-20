@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { StyleSheet, Button, View, Text } from "react-native";
+import { StyleSheet, Button, View, Text, Image } from "react-native";
 import Field from "../components/Field";
 import EventField from "../components/EventField";
-import { windowWidth } from "../constants/WindowSize";
+import { windowWidth, windowHeight } from "../constants/WindowSize";
 import EventsContext from "../utils/EventsContext";
 import EventEnd from "./EventEnd";
 
@@ -30,6 +30,7 @@ const EventDetails = ({ event, handleEventChoice }) => {
   return (
     <View style={styles.container}>
       <TitleField value={event.title} />
+      <Image source = {event.img} style={styles.image} resizeMode={'contain'}/>
       <EventField text={event.time} icon="calendar" />
       <EventField text={event.location} icon="location-pin" />
       <Field value={event.description} />
@@ -71,6 +72,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 10,
     padding: 15,
+  },
+  image: {
+    width: Math.min(windowWidth * 0.5, 200),
+    height:  Math.min(windowWidth * 0.5, 200),
   },
   fields: {
     padding: 10,

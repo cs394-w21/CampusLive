@@ -3,6 +3,7 @@ import { StyleSheet, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import EventSelector from "../components/EventSelector";
 import Banner from "../components/Banner";
+import { ScrollView } from "react-native-gesture-handler";
 
 const EventSelectorScreen = ({ navigation }) => {
   return (
