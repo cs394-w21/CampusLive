@@ -8,7 +8,7 @@ import { ScrollView } from "react-native-gesture-handler";
 const EventSelectorScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Banner />
+      <Banner navigation={navigation} />
       <EventSelector navigation={navigation} />
       <StatusBar style="auto" />
     </SafeAreaView>

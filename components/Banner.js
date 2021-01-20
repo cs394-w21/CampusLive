@@ -2,12 +2,17 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { windowWidth } from "../constants/WindowSize";
 
-const Banner = () => {
+const Banner = ({ navigation }) => {
+
+  const myEventsClick = () => {
+    navigation.navigate("MyEventsScreen");
+  };
+
   return (
     <View style={styles.header}>
       <Text style={styles.headerText}>{"Northwestern Events"}</Text>
       <View style={styles.headerButtons}>
-        <TouchableOpacity style={styles.Button}>
+        <TouchableOpacity style={styles.Button} onPress={myEventsClick}>
           <Text style={styles.ButtonText}>My Events</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.Button}>

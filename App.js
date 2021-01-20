@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { StyleSheet } from "react-native";
 import { firebase } from "./utils/firebase";
 import EventSelectorScreen from "./screens/EventSelectorScreen";
+import MyEventsScreen from "./screens/MyEventsScreen";
 import UserContext from "./utils/UserContext";
 import EventsContext from "./utils/EventsContext";
 
@@ -62,6 +63,11 @@ export default function App() {
               name="EventSelectorScreen"
               component={EventSelectorScreen}
               options={{ title: "Event Selectors" }}
+            />
+            <Stack.Screen
+              name="MyEventsScreen"
+              component={MyEventsScreen}
+              options={{ title: "My Events" }}
             />
           </Stack.Navigator>
         </NavigationContainer>

@@ -30,7 +30,7 @@ const EventDetails = ({ event, handleEventChoice }) => {
   return (
     <View style={styles.container}>
       <TitleField value={event.title} />
-      <Image source = {event.img} style={styles.image} resizeMode={'contain'}/>
+      <Image source={event.img} style={styles.image} resizeMode={'contain'} />
       <EventField text={event.time} icon="calendar" />
       <EventField text={event.location} icon="location-pin" />
       <Field value={event.description} />
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: Math.min(windowWidth * 0.5, 200),
-    height:  Math.min(windowWidth * 0.5, 200),
+    height: Math.min(windowWidth * 0.5, 200),
   },
   fields: {
     padding: 10,
