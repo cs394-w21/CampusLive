@@ -5,7 +5,7 @@ import UserContext from "../utils/UserContext";
 import EventDetails from "./EventDetails";
 import EventEnd from "./EventEnd";
 import ChoiceDisplay from "./ChoiceDisplay";
-import EventSelectionButtons from './EventSelectionButtons';
+import EventSelectionButtons from "./EventSelectionButtons";
 
 // BUG: After we've toggled choice, if we choose "no" when viewing again we wont' progress through events.
 const getDispEvents = (events, choice) => {
@@ -41,7 +41,6 @@ const EventDisplay = ({
         />
         <EventSelectionButtons eventButtonPress={handleEventChoice} />
       </View>
-
     );
   }
 };
@@ -87,8 +86,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   displayContainer: {
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
 export default EventSelector;

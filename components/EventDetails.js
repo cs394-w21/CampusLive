@@ -5,7 +5,7 @@ import EventField from "../components/EventField";
 import { windowWidth, windowHeight } from "../constants/WindowSize";
 import EventsContext from "../utils/EventsContext";
 import EventEnd from "./EventEnd";
-
+import { textFont } from "../constants/Styles";
 
 const TitleField = ({ value }) => {
   return (
@@ -16,7 +16,6 @@ const TitleField = ({ value }) => {
 };
 
 const EventDetails = ({ event, handleEventChoice }) => {
-
   if (!event) {
     return (
       <View style={styles.container}>
@@ -28,7 +27,7 @@ const EventDetails = ({ event, handleEventChoice }) => {
   return (
     <View style={styles.container}>
       <TitleField value={event.title} />
-      <Image source={event.img} style={styles.image} resizeMode={'contain'} />
+      <Image source={event.img} style={styles.image} resizeMode={"contain"} />
       <EventField text={event.time} icon="calendar" />
       <EventField text={event.location} icon="location-pin" />
       <Field value={event.description} />
@@ -64,7 +63,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#4E2A84",
-    fontFamily: "campton",
+    fontFamily: textFont,
     fontSize: 40,
   },
   buttonView: {
