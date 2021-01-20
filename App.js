@@ -4,10 +4,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { StyleSheet } from "react-native";
 import { firebase } from "./utils/firebase";
 import EventSelectorScreen from "./screens/EventSelectorScreen";
-import EventEndScreen from "./screens/EventEndScreen";
 import UserContext from "./utils/UserContext";
 import EventsContext from "./utils/EventsContext";
-import { setStatusBarHidden } from "expo-status-bar";
 
 const Stack = createStackNavigator();
 const adminUID = "admin";
@@ -18,21 +16,9 @@ export default function App() {
   const [events, setEvents] = useState();
 
   useEffect(() => {
-    const db = firebase.database().ref("events");
-    const handleData = (snap) => {
-      if (snap.val()) setEvents(snap.val());
-    };
-    db.on("value", handleData, (error) => alert(error));
-    return () => {
-      db.off("value", handleData);
-    };
-  }, []);
-
-  useEffect(() => {
     const db = firebase.database().ref("users").child(adminUID);
     const handleData = (snap) => {
       setUser({ uid: adminUID, ...snap.val() });
-      console.log(snap.val());
     };
     db.on("value", handleData, (error) => alert(error));
     return () => {
@@ -46,6 +32,27 @@ export default function App() {
     });
   });
 
+  useEffect(() => {
+    if (user && user.uid) {
+      const db = firebase.database().ref("events");
+      const handleData = (snap) => {
+        const events = snap.val();
+        if (events) {
+          for (const eventChoice in user.events_choice) {
+            events[eventChoice].choice = user.events_choice[eventChoice];
+          }
+          setEvents(events);
+        }
+      };
+      db.on("value", handleData, (error) => alert(error));
+      return () => {
+        db.off("value", handleData);
+      };
+    } else {
+      setEvents(null);
+    }
+  }, [user]);
+
   return (
     <UserContext.Provider value={user}>
       <EventsContext.Provider value={{ events, setEvents }}>
@@ -55,11 +62,6 @@ export default function App() {
               name="EventSelectorScreen"
               component={EventSelectorScreen}
               options={{ title: "Event Selectors" }}
-            />
-            <Stack.Screen
-              name="EventEndScreen"
-              component={EventEndScreen}
-              options={{ title: "Event End" }}
             />
           </Stack.Navigator>
         </NavigationContainer>

@@ -1,55 +1,78 @@
 import React, { useState, useContext, useEffect } from "react";
-import EventDetails from "./EventDetails";
-import { ScrollView, Text } from "react-native";
+import { StyleSheet, ScrollView, Text, View } from "react-native";
 import EventsContext from "../utils/EventsContext";
 import UserContext from "../utils/UserContext";
+import EventDetails from "./EventDetails";
+import EventEnd from "./EventEnd";
+import ChoiceDisplay from "./ChoiceDisplay";
 
-const EventSelector = ({ navigation }) => {
-  const { events, setEvents } = useContext(EventsContext);
-  const user = useContext(UserContext);
-
-  const [eventIndex, setEventIndex] = useState(0);
-  const [dispEvents, setDispEvents] = useState(null);
-
-  useEffect(() => {
-    if (user && events) {
-      for (const eventChoice in user.events_choice) {
-        events[eventChoice].choice = user.events_choice[eventChoice];
-      }
-
-      setDispEvents(
-        Object.keys(events)
-          .filter((event) => !events[event].hasOwnProperty("choice"))
-          .reduce(function (acc, event) {
-            acc[event] = events[event];
-            return acc;
-          }, {})
-      );
-    }
-  }, [events, user]);
-
-  if (!events || !dispEvents) {
-    return <Text>{"Loading..."}</Text>;
-  }
-
-  const eventKeys = Object.keys(dispEvents);
-  const event = eventKeys[eventIndex];
-
-  const handleEventChoice = () => {
-    if (eventIndex + 1 === eventKeys.length) {
-      navigation.navigate("EventEndScreen");
-      setEventIndex(0);
-    } else {
-      setEventIndex(eventIndex + 1);
-    }
-  };
-
+// BUG: After we've toggled choice, if we choose "no" when viewing again we wont' progress through events.
+const getDispEvents = (events, choice) => {
   return (
-    <ScrollView>
+    events &&
+    Object.keys(events)
+      .filter(
+        (event) =>
+          !events[event].hasOwnProperty("choice") ||
+          (choice && !events[event].choice)
+      )
+      .reduce(function (acc, event) {
+        acc[event] = events[event];
+        return acc;
+      }, {})
+  );
+};
+
+const EventDisplay = ({
+  dispEvents,
+  event,
+  handleEventChoice,
+  viewAgainPress,
+}) => {
+  if (!event) {
+    return <EventEnd viewAgainPress={viewAgainPress} />;
+  } else {
+    return (
       <EventDetails
         event={dispEvents[event]}
         handleEventChoice={handleEventChoice}
       />
+    );
+  }
+};
+
+const EventSelector = ({ navigation }) => {
+  const { events, setEvents } = useContext(EventsContext);
+  const [eventIndex, setEventIndex] = useState(0);
+  const [dispNoToggle, setDispNoToggle] = useState(false);
+
+  if (!events) {
+    return <Text>{"Loading..."}</Text>;
+  }
+
+  const dispEvents = getDispEvents(events, dispNoToggle);
+  const event = Object.keys(dispEvents)[0];
+
+  const handleEventChoice = (choice) => {
+    console.log("event, choice: ", event, choice);
+    events[event].choice = choice;
+    setEvents(events);
+    setEventIndex(eventIndex + 1);
+  };
+
+  const viewAgainPress = () => {
+    setDispNoToggle(true);
+  };
+
+  return (
+    <ScrollView>
+      <EventDisplay
+        dispEvents={dispEvents}
+        event={event}
+        handleEventChoice={handleEventChoice}
+        viewAgainPress={viewAgainPress}
+      />
+      <ChoiceDisplay events={events} />
     </ScrollView>
   );
 };

@@ -4,6 +4,7 @@ import Field from "../components/Field";
 import EventField from "../components/EventField";
 import { windowWidth } from "../constants/WindowSize";
 import EventsContext from "../utils/EventsContext";
+import EventEnd from "./EventEnd";
 
 const TitleField = ({ value }) => {
   return (
@@ -17,6 +18,14 @@ const EventDetails = ({ event, handleEventChoice }) => {
   const eventButtonPress = (event) => {
     handleEventChoice(event.target.textContent === "yes");
   };
+
+  if (!event) {
+    return (
+      <View style={styles.container}>
+        <EventEnd />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
