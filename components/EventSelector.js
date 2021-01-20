@@ -5,6 +5,7 @@ import UserContext from "../utils/UserContext";
 import EventDetails from "./EventDetails";
 import EventEnd from "./EventEnd";
 import ChoiceDisplay from "./ChoiceDisplay";
+import EventSelectionButtons from './EventSelectionButtons';
 
 // BUG: After we've toggled choice, if we choose "no" when viewing again we wont' progress through events.
 const getDispEvents = (events, choice) => {
@@ -33,10 +34,14 @@ const EventDisplay = ({
     return <EventEnd viewAgainPress={viewAgainPress} />;
   } else {
     return (
-      <EventDetails
-        event={dispEvents[event]}
-        handleEventChoice={handleEventChoice}
-      />
+      <View style={styles.displayContainer}>
+        <EventDetails
+          event={dispEvents[event]}
+          handleEventChoice={handleEventChoice}
+        />
+        <EventSelectionButtons eventButtonPress={handleEventChoice} />
+      </View>
+
     );
   }
 };
@@ -66,21 +71,24 @@ const EventSelector = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-    <ScrollView>
-      <EventDisplay
-        dispEvents={dispEvents}
-        event={event}
-        handleEventChoice={handleEventChoice}
-        viewAgainPress={viewAgainPress}
-      />
-      <ChoiceDisplay events={events} />
-    </ScrollView>
+      <ScrollView>
+        <EventDisplay
+          dispEvents={dispEvents}
+          event={event}
+          handleEventChoice={handleEventChoice}
+          viewAgainPress={viewAgainPress}
+        />
+      </ScrollView>
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+    flex: 1,
   },
+  displayContainer: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
 });
 export default EventSelector;

@@ -6,6 +6,7 @@ import { windowWidth, windowHeight } from "../constants/WindowSize";
 import EventsContext from "../utils/EventsContext";
 import EventEnd from "./EventEnd";
 
+
 const TitleField = ({ value }) => {
   return (
     <View>
@@ -15,9 +16,6 @@ const TitleField = ({ value }) => {
 };
 
 const EventDetails = ({ event, handleEventChoice }) => {
-  const eventButtonPress = (event) => {
-    handleEventChoice(event.target.textContent === "yes");
-  };
 
   if (!event) {
     return (
@@ -34,22 +32,6 @@ const EventDetails = ({ event, handleEventChoice }) => {
       <EventField text={event.time} icon="calendar" />
       <EventField text={event.location} icon="location-pin" />
       <Field value={event.description} />
-      <View style={styles.buttonView}>
-        <Button
-          onPress={eventButtonPress}
-          title="no"
-          type="submit"
-          name="btn"
-          value="No"
-        />
-        <Button
-          onPress={eventButtonPress}
-          title="yes"
-          type="submit"
-          name="btn"
-          value="Yes"
-        />
-      </View>
     </View>
   );
 };
