@@ -6,6 +6,7 @@ import { windowWidth, windowHeight } from "../constants/WindowSize";
 import EventsContext from "../utils/EventsContext";
 import EventEnd from "./EventEnd";
 import { textFont } from "../constants/Styles";
+import { min } from "react-native-reanimated";
 
 const TitleField = ({ value }) => {
   return (
@@ -42,9 +43,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 5,
-    margin: 10,
+    margin: windowWidth * 0.1,
     width: windowWidth * 0.8,
-    marginTop: 50,
+    marginTop: Math.min(50, windowWidth * 0.1),
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

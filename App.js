@@ -58,7 +58,20 @@ export default function App() {
     <UserContext.Provider value={user}>
       <EventsContext.Provider value={{ events, setEvents }}>
         <NavigationContainer>
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: "#4E2A84",
+              },
+              headerTitle: "CampusLive",
+              headerLeft: null,
+              headerTintColor: "#fff",
+              headerTitleAlign: "center",
+              headerTitleStyle: {
+                fontSize: 32,
+              },
+            }}
+          >
             <Stack.Screen
               name="EventSelectorScreen"
               component={EventSelectorScreen}

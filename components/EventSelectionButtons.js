@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   buttonText: {
-    fontFamily: textFont + "bold",
+    fontFamily: textFont,
     fontSize: 20,
     color: "white",
   },

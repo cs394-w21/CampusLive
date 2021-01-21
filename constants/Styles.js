@@ -1,3 +1,3 @@
-const textFont = "tahoma";
+const textFont = "Helvetica";
 
 export { textFont };
