@@ -28,7 +28,11 @@ const EventDetails = ({ event, handleEventChoice }) => {
   return (
     <View style={styles.container}>
       <TitleField value={event.title} />
-      <Image source={event.img} style={styles.image} resizeMode={"contain"} />
+      <Image
+        source={{ uri: event.img }}
+        style={styles.image}
+        resizeMode={"contain"}
+      />
       <EventField text={event.time} icon="calendar" />
       <EventField text={event.location} icon="location-pin" />
       <Field value={event.description} />
@@ -43,7 +47,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 5,
-    margin: windowWidth * 0.1,
+    marginLeft: windowWidth * 0.1,
+    marginRight: windowWidth * 0.1,
     width: windowWidth * 0.8,
     marginTop: Math.min(50, windowWidth * 0.1),
     shadowColor: "#000",

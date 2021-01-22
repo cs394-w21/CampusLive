@@ -3,10 +3,10 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { windowWidth } from "../constants/WindowSize";
 import { textFont } from "../constants/Styles";
 
-const EventSelectionButtons = ({ eventButtonPress }) => (
+const EventSelectionButtons = ({ handleEventChoice }) => (
   <View style={styles.buttonView}>
     <TouchableOpacity
-      onPress={eventButtonPress}
+      onPress={() => handleEventChoice(false)}
       title="no"
       type="submit"
       name="btn"
@@ -16,7 +16,7 @@ const EventSelectionButtons = ({ eventButtonPress }) => (
       <Text style={styles.buttonText}>Not Interested</Text>
     </TouchableOpacity>
     <TouchableOpacity
-      onPress={eventButtonPress}
+      onPress={() => handleEventChoice(true)}
       title="yes"
       type="submit"
       name="btn"
@@ -27,6 +27,7 @@ const EventSelectionButtons = ({ eventButtonPress }) => (
     </TouchableOpacity>
   </View>
 );
+// TODO: move this to the styles file
 const button = {
   flex: 1,
   borderRadius: 5,
@@ -36,6 +37,7 @@ const button = {
   height: 40,
   padding: 10,
 };
+// TODO: Change button sizes
 const styles = StyleSheet.create({
   buttonView: {
     flex: 1,

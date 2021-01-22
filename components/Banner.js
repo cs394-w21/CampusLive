@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { windowWidth } from "../constants/WindowSize";
 import { textFont } from "../constants/Styles";
 

@@ -17,7 +17,6 @@ const DropDownNavigator = ({ navigation }) => {
   const updateDropdown = () => {
     setToggleDropdown(!toggleDropdown);
   };
-  console.log("toggle: ", toggleDropdown);
 
   return (
     <View style={styles.navigationContainer}>

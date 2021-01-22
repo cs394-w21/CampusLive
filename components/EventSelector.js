@@ -39,7 +39,7 @@ const EventDisplay = ({
           event={dispEvents[event]}
           handleEventChoice={handleEventChoice}
         />
-        <EventSelectionButtons eventButtonPress={handleEventChoice} />
+        <EventSelectionButtons handleEventChoice={handleEventChoice} />
       </View>
     );
   }
@@ -58,7 +58,6 @@ const EventSelector = ({ navigation }) => {
   const event = Object.keys(dispEvents)[0];
 
   const handleEventChoice = (choice) => {
-    console.log("event, choice: ", event, choice);
     events[event].choice = choice;
     setEvents(events);
     setEventIndex(eventIndex + 1);
