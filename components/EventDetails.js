@@ -5,8 +5,7 @@ import EventField from "../components/EventField";
 import { windowWidth, windowHeight } from "../constants/WindowSize";
 import EventsContext from "../utils/EventsContext";
 import EventEnd from "./EventEnd";
-import { textFont } from "../constants/Styles";
-import { min } from "react-native-reanimated";
+import { textFont, eventCard } from "../constants/Styles";
 
 const TitleField = ({ value }) => {
   return (
@@ -41,25 +40,7 @@ const EventDetails = ({ event, handleEventChoice }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 5,
-    marginLeft: windowWidth * 0.1,
-    marginRight: windowWidth * 0.1,
-    width: windowWidth * 0.8,
-    marginTop: Math.min(50, windowWidth * 0.1),
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 10,
-    padding: 15,
-  },
+  container: { ...eventCard },
   image: {
     width: Math.min(windowWidth * 0.5, 200),
     height: Math.min(windowWidth * 0.5, 200),

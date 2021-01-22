@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
+import { enableScreens } from "react-native-screens";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+// import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+// import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Entypo } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
 import { firebase } from "./utils/firebase";
 import UserContext from "./utils/UserContext";
 import EventsContext from "./utils/EventsContext";
 import EventSelectorScreen from "./screens/EventSelectorScreen";
 import EventDisplayScreen from "./screens/EventDisplayScreen";
-import { Entypo } from "@expo/vector-icons";
 
-const Drawer = createDrawerNavigator();
+// const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
+// const Stack = createStackNavigator();
+enableScreens();
 
 const adminUID = "admin";
 
@@ -60,7 +62,6 @@ export default function App() {
     }
   }, [user]);
 
-  // TODO: When
   return (
     <UserContext.Provider value={user}>
       <EventsContext.Provider value={{ events, setEvents }}>

@@ -4,8 +4,7 @@ import EventsContext from "../utils/EventsContext";
 import UserContext from "../utils/UserContext";
 import EventDetails from "./EventDetails";
 import EventEnd from "./EventEnd";
-import ChoiceDisplay from "./ChoiceDisplay";
-import EventSelectionButtons from "./EventSelectionButtons";
+import EventChoiceButtons from "./EventChoiceButtons";
 
 // BUG: After we've toggled choice, if we choose "no" when viewing again we wont' progress through events.
 const getDispEvents = (events, choice) => {
@@ -39,12 +38,13 @@ const EventDisplay = ({
           event={dispEvents[event]}
           handleEventChoice={handleEventChoice}
         />
-        <EventSelectionButtons handleEventChoice={handleEventChoice} />
+        <EventChoiceButtons handleEventChoice={handleEventChoice} />
       </View>
     );
   }
 };
 
+// TODO: Swipe again doesn't work
 const EventSelector = ({ navigation }) => {
   const { events, setEvents } = useContext(EventsContext);
   const [eventIndex, setEventIndex] = useState(0);

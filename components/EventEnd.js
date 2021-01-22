@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { StyleSheet, Button, View, Text } from "react-native";
 import { windowWidth } from "../constants/WindowSize";
 import EventsContext from "../utils/EventsContext";
+import { textFont, eventCard } from "../constants/Styles";
 
 const TitleField = ({ value }) => {
   return (
@@ -14,12 +15,13 @@ const TitleField = ({ value }) => {
 const EventEnd = ({ navigation, viewAgainPress }) => {
   return (
     <View style={styles.container}>
-      <TitleField value="No more events to view. Swipe through rejected events again." />
+      <TitleField value="No events to view." />
       <View style={styles.buttonView}>
         <Button
           style={styles.button}
           onPress={viewAgainPress}
           title="Swipe again"
+          disabled={true}
         />
       </View>
     </View>
@@ -27,27 +29,10 @@ const EventEnd = ({ navigation, viewAgainPress }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 5,
-    margin: 10,
-    width: windowWidth * 0.8,
-    marginTop: 50,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 10,
-    padding: 15,
-  },
+  container: { ...eventCard },
   title: {
     color: "#4E2A84",
-    fontFamily: "campton",
+    fontFamily: textFont,
     fontSize: 40,
   },
   buttonView: {

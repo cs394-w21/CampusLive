@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import EventsContext from "../utils/EventsContext";
-import AcceptedEvents from "../components/AcceptedEvents";
+import AcceptedEventList from "../components/AcceptedEventList";
 import Banner from "../components/Banner";
 import EventDetails from "../components/EventDetails";
 
@@ -26,7 +26,7 @@ const EventDisplayScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Banner navigation={navigation} />
-      <AcceptedEvents displayEvents={dispEvents} />
+      <AcceptedEventList displayEvents={dispEvents} />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
