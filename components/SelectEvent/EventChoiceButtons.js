@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { textFont } from "../constants/Styles";
+import { textFont } from "../../constants/Styles";
 
 const EventChoiceButton = ({ text, choice, handleEventChoice, buttonType }) => {
   return (

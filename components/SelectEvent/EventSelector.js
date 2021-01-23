@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { StyleSheet, ScrollView, Text, View } from "react-native";
-import EventsContext from "../utils/EventsContext";
-import UserContext from "../utils/UserContext";
-import EventDetails from "./EventDetails";
+import EventsContext from "../../utils/EventsContext";
+import UserContext from "../../utils/UserContext";
+import EventDetails from "../EventDetails";
 import EventEnd from "./EventEnd";
 import EventChoiceButtons from "./EventChoiceButtons";
 

@@ -1,14 +1,14 @@
 import React from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import EventSelector from "../components/EventSelector";
+import EventCreator from "../components/CreateEvent/EventCreator";
 import Banner from "../components/Banner";
 
-const EventSelectorScreen = ({ navigation }) => {
+const CreateEventScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Banner navigation={navigation} />
-      <EventSelector navigation={navigation} />
+      <EventCreator />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
@@ -23,4 +23,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EventSelectorScreen;
+export default CreateEventScreen;

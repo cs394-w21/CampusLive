@@ -9,8 +9,9 @@ import { StyleSheet } from "react-native";
 import { firebase } from "./utils/firebase";
 import UserContext from "./utils/UserContext";
 import EventsContext from "./utils/EventsContext";
-import EventSelectorScreen from "./screens/EventSelectorScreen";
-import EventDisplayScreen from "./screens/EventDisplayScreen";
+import SelectEventScreen from "./screens/SelectEventScreen";
+import DisplayEventScreen from "./screens/DisplayEventScreen";
+import CreateEventScreen from "./screens/CreateEventScreen";
 
 // const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
@@ -80,10 +81,11 @@ export default function App() {
               },
             }}
             tabBarOptions={{ showIcon: true }}
+            initialRouteName="CreateEventScreen"
           >
             <Tab.Screen
-              name="EventSelectorScreen"
-              component={EventSelectorScreen}
+              name="SelectEventScreen"
+              component={SelectEventScreen}
               options={{
                 title: "Feed",
                 tabBarIcon: () => (
@@ -92,12 +94,22 @@ export default function App() {
               }}
             />
             <Tab.Screen
-              name="EventDisplayScreen"
-              component={EventDisplayScreen}
+              name="DisplayEventScreen"
+              component={DisplayEventScreen}
               options={{
                 title: "My Events",
                 tabBarIcon: () => (
                   <Entypo name="calendar" size={20} color="black" />
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="CreateEventScreen"
+              component={CreateEventScreen}
+              options={{
+                title: "New Event",
+                tabBarIcon: () => (
+                  <Entypo name="plus" size={20} color="black" />
                 ),
               }}
             />

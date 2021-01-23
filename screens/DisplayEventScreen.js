@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import EventsContext from "../utils/EventsContext";
-import AcceptedEventList from "../components/AcceptedEventList";
+import AcceptedEventList from "../components/DisplayEvent/AcceptedEventList";
 import Banner from "../components/Banner";
 import EventDetails from "../components/EventDetails";
 
-const EventDisplayScreen = ({ navigation }) => {
+const DisplayEventScreen = ({ navigation }) => {
   const { events, setEvents } = useContext(EventsContext);
   const [dispEvents, setDispEvents] = useState([]);
 
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EventDisplayScreen;
+export default DisplayEventScreen;

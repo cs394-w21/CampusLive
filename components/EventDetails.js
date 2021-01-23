@@ -2,10 +2,9 @@ import React, { useContext } from "react";
 import { StyleSheet, Button, View, Text, Image } from "react-native";
 import Field from "../components/Field";
 import EventField from "../components/EventField";
-import { windowWidth, windowHeight } from "../constants/WindowSize";
 import EventsContext from "../utils/EventsContext";
-import EventEnd from "./EventEnd";
 import { textFont, eventCard } from "../constants/Styles";
+import { windowWidth, windowHeight } from "../constants/WindowSize";
 
 const TitleField = ({ value }) => {
   return (
@@ -16,14 +15,6 @@ const TitleField = ({ value }) => {
 };
 
 const EventDetails = ({ event, handleEventChoice }) => {
-  if (!event) {
-    return (
-      <View style={styles.container}>
-        <EventEnd />
-      </View>
-    );
-  }
-
   return (
     <View style={styles.container}>
       <TitleField value={event.title} />

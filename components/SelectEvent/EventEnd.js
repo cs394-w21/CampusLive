@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { StyleSheet, Button, View, Text } from "react-native";
-import { windowWidth } from "../constants/WindowSize";
-import EventsContext from "../utils/EventsContext";
-import { textFont, eventCard } from "../constants/Styles";
+import EventsContext from "../../utils/EventsContext";
+import { textFont, eventCard } from "../../constants/Styles";
+import { windowWidth } from "../../constants/WindowSize";
 
 const TitleField = ({ value }) => {
   return (
