@@ -1,8 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
-import CreateEventImage from "./CreateEventImage";
+import { View, StyleSheet, ScrollView } from "react-native";
 import CreateEventForm from "./CreateEventForm";
-import Form from "../Form";
 
 const EventCreator = ({}) => {
   return (

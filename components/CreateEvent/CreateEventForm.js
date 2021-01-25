@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { Formik } from "formik";
 import Form from "../Form";
-import DatePicker from "../DatePicker";
-import CreateEventImage from "./CreateEventImage";
 import * as Yup from "yup";
 import { firebase } from "../../utils/firebase";
 import { eventUploadBackground } from "../../constants/CreateEventConstants";
+import uploadImage, { LOADING_GIF } from "../../utils/UploadImage";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().label("title"),
@@ -20,17 +18,25 @@ const CreateEventForm = () => {
   const [submitError, setSubmitError] = useState("");
 
   const handleCreateEvent = (values) => {
-    console.log(values);
-    // TODO: Upload values.image to cloudinary, then grab the new hosted url
-    // Then use that url as part of upload to firebase
-
-    // firebase
-    //   .database()
-    //   .ref("events")
-    //   .push(values)
-    //   .catch((error) => {
-    //     setSubmitError(error.message);
-    //   });
+    uploadImage(values["image"])
+      .then(async (r) => {
+        let data = await r.json();
+        // console.log("data: ", data);
+        console.log("url: ", data.secure_url);
+        values["image"] = data.secure_url;
+        firebase
+          .database()
+          .ref("events")
+          .push(values)
+          .catch((error) => {
+            setSubmitError(error.message);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("failed upload");
+        // Handle error somehow
+      });
   };
 
   return (
@@ -52,7 +58,6 @@ const CreateEventForm = () => {
         leftIcon="identifier"
         placeholder="Title"
         autoCapitalize="none"
-        autoFocus={true}
       />
       <Form.Field
         name="host"

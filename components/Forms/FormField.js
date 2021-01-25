@@ -1,8 +1,7 @@
-import React from 'react';
-import { useFormikContext } from 'formik';
-
-import FormErrorMessage from './FormErrorMessage';
-import FormTextInput from './FormTextInput';
+import React from "react";
+import { useFormikContext } from "formik";
+import FormErrorMessage from "./FormErrorMessage";
+import FormTextInput from "./FormTextInput";
 
 export default function FormField({ name, width, ...otherProps }) {
   const {
@@ -10,14 +9,14 @@ export default function FormField({ name, width, ...otherProps }) {
     setFieldValue,
     values,
     errors,
-    touched
+    touched,
   } = useFormikContext();
 
   return (
     <React.Fragment>
       <FormTextInput
         value={values[name]}
-        onChangeText={text => setFieldValue(name, text)}
+        onChangeText={(text) => setFieldValue(name, text)}
         onBlur={() => setFieldTouched(name)}
         width={width}
         {...otherProps}
