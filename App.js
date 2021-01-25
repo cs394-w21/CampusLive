@@ -12,6 +12,7 @@ import EventsContext from "./utils/EventsContext";
 import SelectEventScreen from "./screens/SelectEventScreen";
 import DisplayEventScreen from "./screens/DisplayEventScreen";
 import CreateEventScreen from "./screens/CreateEventScreen";
+import CalendarScreen from "./screens/CalendarScreen";
 
 // const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
@@ -110,6 +111,16 @@ export default function App() {
                 title: "New Event",
                 tabBarIcon: () => (
                   <Entypo name="plus" size={20} color="black" />
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="CalendarScreen"
+              component={CalendarScreen}
+              options={{
+                title: "Your Event Calendar",
+                tabBarIcon: () => (
+                  <Entypo name="calendar" size={20} color="red" />
                 ),
               }}
             />
