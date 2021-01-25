@@ -4,7 +4,7 @@ import Form from "../Form";
 import * as Yup from "yup";
 import { firebase } from "../../utils/firebase";
 import { eventUploadBackground } from "../../constants/CreateEventConstants";
-import uploadImage, { LOADING_GIF } from "../../utils/UploadImage";
+import uploadImage from "../../utils/UploadImage";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().label("title"),

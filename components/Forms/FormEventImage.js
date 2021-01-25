@@ -61,13 +61,7 @@ const FormEventImage = ({ name }) => {
 
   return (
     <View style={styles.uploadContainer}>
-      <TouchableOpacity
-        style={styles.uploadButton}
-        onPress={() => {
-          setFieldValue(name, LOADING_GIF);
-          pickImage();
-        }}
-      >
+      <TouchableOpacity style={styles.uploadButton} onPress={pickImage}>
         <ImageBackground
           source={{ uri: values[name] }}
           style={styles.eventImage}
