@@ -100,6 +100,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
   },
+  uploadContainer: {
+    marginVertical: 5,
+  },
 });
 
 export default FormEventImage;

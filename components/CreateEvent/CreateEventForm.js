@@ -43,19 +43,20 @@ const CreateEventForm = () => {
     <Form
       initialValues={{
         image: eventUploadBackground,
-        title: "title",
-        host: "host",
-        location: "location",
-        time: "time",
-        description: "description",
+        title: "",
+        host: "",
+        location: "",
+        time: "",
+        description: "",
       }}
       onSubmit={(values) => handleCreateEvent(values)}
       validationSchema={validationSchema}
+      style={styles.form}
     >
-      <Form.FormEventImage name="image" />
+      <Form.EventImage name="image" />
       <Form.Field
         name="title"
-        leftIcon="identifier"
+        leftIcon="calendar-text-outline"
         placeholder="Title"
         autoCapitalize="none"
       />
@@ -67,22 +68,29 @@ const CreateEventForm = () => {
       />
       <Form.Field
         name="location"
-        leftIcon="calendar-range"
+        leftIcon="map-marker"
         placeholder="Location"
         autoCapitalize="none"
       />
-      <Form.Field name="time" leftIcon="clock-outline" placeholder="Time" />
+      <Form.Field name="startTime" leftIcon="clock-in" placeholder="12:00 PM" />
+      <Form.Field name="endTime" leftIcon="clock-out" placeholder="1:00 AM" />
       <Form.Field
         name="description"
         leftIcon="card-text-outline"
         placeholder="Description"
         autoCapitalize="none"
+        multiline
+        numberOfLines={4}
       />
       <Form.Button title={"Create Event"} />
       {<Form.ErrorMessage error={submitError} visible={true} />}
     </Form>
   );
 };
+
+const styles = StyleSheet.create({
+  formContainer: {},
+});
 
 export default CreateEventForm;
 
