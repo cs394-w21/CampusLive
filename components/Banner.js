@@ -3,7 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { windowWidth } from "../constants/WindowSize";
 import { textFont } from "../constants/Styles";
 
-const Banner = ({ navigation }) => {
+const Banner = () => {
   return (
     <View style={styles.header}>
       <Text style={styles.headerText}>{"CampusLive"}</Text>

@@ -1,22 +1,23 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import CreateEventImage from "./CreateEventImage";
+import CreateEventForm from "./CreateEventForm";
+import Form from "../Form";
 
 const EventCreator = ({}) => {
   return (
-    <View style={styles.container}>
-      <CreateEventImage />
-      {/* Fields to upload with an event */}
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <CreateEventForm />
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#E4E0EE",
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
   },
 });
 

@@ -7,7 +7,7 @@ import Banner from "../components/Banner";
 const CreateEventScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Banner navigation={navigation} />
+      <Banner />
       <EventCreator />
       <StatusBar style="auto" />
     </SafeAreaView>

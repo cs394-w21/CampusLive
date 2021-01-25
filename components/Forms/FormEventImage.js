@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import Dropzone from "react-dropzone";
-import * as ImagePicker from "expo-image-picker";
 import {
   ImageBackground,
   View,
@@ -9,13 +7,21 @@ import {
   TouchableOpacity,
   Platform,
 } from "react-native";
-import { eventUploadBackground } from "../../constants/CreateEventConstants";
+import { useFormikContext } from "formik";
+import * as ImagePicker from "expo-image-picker";
 import { windowWidth } from "../../constants/WindowSize";
 import { textFont } from "../../constants/Styles";
 import uploadImage from "../../utils/UploadImage";
+import FormErrorMessage from "./FormErrorMessage";
 
-const CreateEventImage = () => {
-  const [eventImageUrl, setEventImageUrl] = useState(eventUploadBackground);
+const FormEventImage = ({ name }) => {
+  const {
+    setFieldTouched,
+    setFieldValue,
+    values,
+    errors,
+    touched,
+  } = useFormikContext();
 
   useEffect(() => {
     (async () => {
@@ -29,6 +35,8 @@ const CreateEventImage = () => {
       }
     })();
   }, []);
+
+  const imgUrl = values[name];
 
   const uploadImageWrapper = (imageFile) => {
     console.log(imageFile);
@@ -47,13 +55,14 @@ const CreateEventImage = () => {
 
     console.log(result);
     if (!result.cancelled) {
-      const imageUri = `data:image/jpg;base64,${result.uri}`;
-      uploadImageWrapper(imageUri);
+      //   const imageUri = `data:image/jpg;base64,${result.uri}`;
+      //   uploadImageWrapper(imageUri);
+      setFieldValue(name, result.uri);
     }
   };
 
   return (
-    <ImageBackground source={{ uri: eventImageUrl }} style={styles.eventImage}>
+    <ImageBackground source={{ uri: imgUrl }} style={styles.eventImage}>
       <View style={styles.uploadContainer}>
         <TouchableOpacity style={styles.uploadButton} onPress={pickImage}>
           <Text style={styles.uploadText}>Upload Event Photo.</Text>
@@ -89,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CreateEventImage;
+export default FormEventImage;

@@ -25,7 +25,7 @@ const DisplayEventScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Banner navigation={navigation} />
+      <Banner />
       <AcceptedEventList displayEvents={dispEvents} />
       <StatusBar style="auto" />
     </SafeAreaView>
