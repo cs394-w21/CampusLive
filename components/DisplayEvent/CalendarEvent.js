@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, Text } from 'react-native';
 import { textFont, eventCard } from '../../constants/Styles';
 import { windowHeight } from '../../constants/WindowSize';
 import Field from "../../components/Field";
@@ -15,17 +15,10 @@ const TitleField = ({ value }) => {
 };
 
 const CalendarEvent = ({ event }) => {
+    // console.log("event to display", event);
     return (
         <View style={styles.container}>
-            {/* <TitleField value={event.title} />
-            <Image
-                source={{ uri: event.img }}
-                style={styles.image}
-                resizeMode={"contain"}
-            />
-            <EventField text={event.time} icon="calendar" />
-            <EventField text={event.location} icon="location-pin" />
-            <Field value={event.description} /> */}
+            <TitleField value={event.title} />
         </View>
     )
 }

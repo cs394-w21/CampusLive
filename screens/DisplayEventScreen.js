@@ -25,7 +25,7 @@ const DisplayEventScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Banner navigation={navigation} />
-      <ScrollView>{dispEvents}</ScrollView>
+      <ScrollView>{dispEvent}</ScrollView>
       <StatusBar style="auto" />
     </SafeAreaView>
   );
