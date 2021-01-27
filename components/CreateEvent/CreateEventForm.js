@@ -1,16 +1,35 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import Form from "../Form";
 import * as Yup from "yup";
-import { firebase } from "../../utils/firebase";
+import Moment from "moment";
+import Form from "../Form";
 import { eventUploadBackground } from "../../constants/CreateEventConstants";
+import { firebase } from "../../utils/firebase";
 import uploadImage from "../../utils/UploadImage";
 
 const validationSchema = Yup.object().shape({
-  title: Yup.string().required().label("title"),
-  host: Yup.string().required().label("host"),
-  location: Yup.string().required().label("location"),
-  time: Yup.string().required().label("time"),
+  title: Yup.string().required().label("Title"),
+  host: Yup.string().required().label("Host"),
+  location: Yup.string().required().label("Location"),
+  startTime: Yup.string()
+    .matches(
+      /^(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])\/(2[0-9])/,
+      "Start Date must be in format MM/DD/YY"
+    )
+    .required()
+    .label("Start Time"),
+  endTime: Yup.string()
+    .matches(
+      /^(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])\/(2[0-9])/,
+      "End Date must be in format MM/DD/YY"
+    )
+    .test("is-greater", "End should be after start.", function (value) {
+      const { startTime } = this.parent;
+      return value && value !== ""
+        ? Moment(value, "MM-DD-YY").isSameOrAfter(Moment(startTime, "MM-DD-YY"))
+        : true;
+    })
+    .label("End Time"),
   description: Yup.string().required().label("description"),
 });
 
@@ -18,65 +37,73 @@ const CreateEventForm = () => {
   const [submitError, setSubmitError] = useState("");
 
   const handleCreateEvent = (values) => {
-    uploadImage(values["image"])
-      .then(async (r) => {
-        let data = await r.json();
-        // console.log("data: ", data);
-        console.log("url: ", data.secure_url);
-        values["image"] = data.secure_url;
-        firebase
-          .database()
-          .ref("events")
-          .push(values)
-          .catch((error) => {
-            setSubmitError(error.message);
-          });
+    firebase
+      .database()
+      .ref("events")
+      .push(values)
+      .then(() => {
+        alert("Event Created!");
       })
-      .catch((err) => {
-        console.log(err);
-        console.log("failed upload");
-        // Handle error somehow
+      .catch((error) => {
+        setSubmitError(error.message);
       });
   };
-
+  // TODO: lazy upload image or do it right away
   return (
     <Form
       initialValues={{
-        image: eventUploadBackground,
-        title: "title",
-        host: "host",
-        location: "location",
-        time: "time",
-        description: "description",
+        img: eventUploadBackground,
+        title: "",
+        host: "",
+        location: "",
+        startTime: "",
+        endTime: "",
+        description: "",
       }}
       onSubmit={(values) => handleCreateEvent(values)}
       validationSchema={validationSchema}
     >
-      <Form.FormEventImage name="image" />
+      <Form.EventImage name="img" />
       <Form.Field
         name="title"
-        leftIcon="identifier"
         placeholder="Title"
         autoCapitalize="none"
+        textAlign={"center"}
       />
       <Form.Field
         name="host"
-        leftIcon="account"
+        // leftIcon="account"
         placeholder="Host"
         autoCapitalize="none"
+        textAlign={"center"}
       />
       <Form.Field
         name="location"
-        leftIcon="calendar-range"
+        // leftIcon="map-marker"
         placeholder="Location"
         autoCapitalize="none"
+        textAlign={"center"}
       />
-      <Form.Field name="time" leftIcon="clock-outline" placeholder="Time" />
+      <Form.Field
+        name="startTime"
+        // leftIcon="clock-in"
+        placeholder="Start Time"
+        textAlign={"center"}
+      />
+      <Form.Field
+        name="endTime"
+        // leftIcon="clock-out"
+        placeholder="End Time"
+        textAlign={"center"}
+      />
       <Form.Field
         name="description"
-        leftIcon="card-text-outline"
+        // leftIcon="card-text-outline"
         placeholder="Description"
         autoCapitalize="none"
+        textAlign={"center"}
+        multiline
+        numberOfLines={4}
       />
       <Form.Button title={"Create Event"} />
       {<Form.ErrorMessage error={submitError} visible={true} />}

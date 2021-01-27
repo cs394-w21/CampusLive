@@ -11,6 +11,6 @@ Form.Field = FormField;
 Form.Button = FormButton;
 Form.ErrorMessage = FormErrorMessage;
 Form.Switch = FormSwitch;
-Form.FormEventImage = FormEventImage;
+Form.EventImage = FormEventImage;
 
 export default Form;
