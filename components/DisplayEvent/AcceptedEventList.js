@@ -7,9 +7,19 @@ import UserContext from "../../utils/UserContext";
 
 const AcceptedEventList = ({ displayEvents }) => {
   const { user, setUser } = useContext(UserContext);
-  return (
-    <ScrollView style={styles.eventsContainer}>{displayEvents}</ScrollView>
-  );
+  if (displayEvents.length === 0) {
+    return (
+      <ScrollView style={styles.eventsContainer}>
+        <Text>
+          Go like some Events!
+        </Text>
+      </ScrollView>
+    )
+  } else {
+    return (
+      <ScrollView style={styles.eventsContainer}>{displayEvents}</ScrollView>
+    );
+  };
 };
 
 const styles = StyleSheet.create({

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import Form from "../Form";
 import * as Yup from "yup";
 import { firebase } from "../../utils/firebase";
@@ -28,6 +28,9 @@ const CreateEventForm = () => {
           .database()
           .ref("events")
           .push(values)
+          .then(() => {
+            alert("Event created.")
+          })
           .catch((error) => {
             setSubmitError(error.message);
           });
