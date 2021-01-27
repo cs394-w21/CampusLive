@@ -11,13 +11,14 @@ import CalendarEvent from "../components/DisplayEvent/CalendarEvent";
 
 const CalendarScreen = ({ navigation }) => {
     const { events, setEvents } = useContext(EventsContext);
-    const [dispEvents, setDispEvents] = useState('');
+    const [dispEvents, setDispEvents] = useState({});
 
     const formatNumber = (number) => number < 10 ? "0" + number : number;
 
     const emptyDates = {};
     const year = new Date().getFullYear();
     const currMonth = new Date().getMonth() + 1;
+    console.log('first run');
     for (let newMonth = currMonth; newMonth < currMonth + 3; newMonth++) {
         for (const day of Array(new Date(year, newMonth, 0).getDate()).keys()) {
             emptyDates[[year, formatNumber(newMonth), formatNumber(day + 1)].join("-")] = [];
@@ -31,18 +32,18 @@ const CalendarScreen = ({ navigation }) => {
             const items = Object.keys(events)
                 .filter((key) => events[key].choice)
                 .map((key) => {
-                    if (events[key].date in dateItemsObj) {
-                        dateItemsObj[events[key].date].push({ name: events[key].title });
+                    if (events[key].date in dateItemsObj && !dateItemsObj[events[key].date].includes(events[key].id)) {
+                        dateItemsObj[events[key].date].push({ name: events[key].id });
                     } else {
-                        dateItemsObj[events[key].date] = [{ name: events[key].title }];
+                        dateItemsObj[events[key].date] = [{ name: events[key].id }];
                     }
-                    console.log(dateItemsObj[events[key].date]);
                 });
             setDispEvents(dateItemsObj);
         });
 
         return listener;
     }, [navigation]);
+    console.log(dispEvents);
 
     return (
         <Agenda
