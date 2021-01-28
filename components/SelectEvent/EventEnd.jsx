@@ -1,32 +1,27 @@
-import React, { useContext } from "react";
+import React from "react";
 import { StyleSheet, Button, View, Text } from "react-native";
-import EventsContext from "../../utils/EventsContext";
 import { textFont, eventCard } from "../../constants/Styles";
 import { windowWidth } from "../../constants/WindowSize";
 
-const TitleField = ({ value }) => {
-  return (
-    <View>
-      <Text style={styles.title}>{value}</Text>
-    </View>
+const TitleField = ({ value }) => (
+  <View>
+    <Text style={styles.title}>{value}</Text>
+  </View>
   );
-};
 
-const EventEnd = ({ navigation, viewAgainPress }) => {
-  return (
-    <View style={styles.container}>
-      <TitleField value="No events to view." />
-      <View style={styles.buttonView}>
-        <Button
-          style={styles.button}
-          onPress={viewAgainPress}
-          title="Swipe again"
-          disabled={true}
-        />
-      </View>
+const EventEnd = ({ viewAgainPress }) => (
+  <View style={styles.container}>
+    <TitleField value="No events to view." />
+    <View style={styles.buttonView}>
+      <Button
+        style={styles.button}
+        onPress={viewAgainPress}
+        title="Swipe again"
+        disabled
+      />
     </View>
+  </View>
   );
-};
 
 const styles = StyleSheet.create({
   container: { ...eventCard },

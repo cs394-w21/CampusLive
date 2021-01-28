@@ -4,9 +4,9 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  KeyboardAvoidingView,
-  Platform,
-  SafeAreaView,
+  // KeyboardAvoidingView,
+  // Platform,
+  // SafeAreaView,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { windowWidth } from "../../constants/WindowSize";
@@ -14,7 +14,6 @@ import Colors from "./colors";
 
 export default function FormTextInput({
   leftIcon,
-  width = "100%",
   rightIcon,
   handlePasswordVisibility,
   ...otherProps
@@ -37,6 +36,7 @@ export default function FormTextInput({
       <TextInput
         style={styles.input}
         placeholderTextColor={Colors.mediumGrey}
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...otherProps}
       />
       {rightIcon && (

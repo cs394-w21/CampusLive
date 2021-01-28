@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 import Moment from "moment";
 import Form from "../Form";
@@ -18,7 +18,7 @@ const validationSchema = Yup.object().shape({
     .label("Start Time"),
   endTime: Yup.string()
     .matches(dateRegex, "Date must be in format MM/DD/YY")
-    .test("is-greater", "End should be after start.", function (value) {
+    .test("is-greater", "End should be after start.", (value) => {
       const { startTime } = this.parent;
       return value && value !== ""
         ? Moment(value, "MM-DD-YY").isSameOrAfter(Moment(startTime, "MM-DD-YY"))
@@ -37,6 +37,7 @@ const CreateEventForm = () => {
       .ref("events")
       .push(values)
       .then(() => {
+        // eslint-disable-next-line no-alert
         alert("Event Created!");
       })
       .catch((error) => {
@@ -64,45 +65,45 @@ const CreateEventForm = () => {
         name="title"
         placeholder="Title"
         autoCapitalize="none"
-        textAlign={"center"}
+        textAlign="center"
       />
       <Form.Field
         name="host"
         // leftIcon="account"
         placeholder="Host"
         autoCapitalize="none"
-        textAlign={"center"}
+        textAlign="center"
       />
       <Form.Field
         name="location"
         // leftIcon="map-marker"
         placeholder="Location"
         autoCapitalize="none"
-        textAlign={"center"}
+        textAlign="center"
       />
       <Form.Field
         name="startTime"
         // leftIcon="clock-in"
         placeholder="Start Time"
-        textAlign={"center"}
+        textAlign="center"
       />
       <Form.Field
         name="endTime"
         // leftIcon="clock-out"
         placeholder="End Time"
-        textAlign={"center"}
+        textAlign="center"
       />
       <Form.Field
         name="description"
         // leftIcon="card-text-outline"
         placeholder="Description"
         autoCapitalize="none"
-        textAlign={"center"}
+        textAlign="center"
         multiline
         numberOfLines={4}
       />
-      <Form.Button title={"Create Event"} />
-      {<Form.ErrorMessage error={submitError} visible={true} />}
+      <Form.Button title="Create Event" />
+      <Form.ErrorMessage error={submitError} visible />
     </Form>
   );
 };

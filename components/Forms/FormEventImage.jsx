@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useFormikContext } from "formik";
 import * as ImagePicker from "expo-image-picker";
-import FormErrorMessage from "./FormErrorMessage";
+// import FormErrorMessage from "./FormErrorMessage";
 import { windowWidth } from "../../constants/WindowSize";
 import { textFont } from "../../constants/Styles";
 import { eventUploadBackground } from "../../constants/CreateEventConstants";
@@ -18,11 +18,8 @@ import uploadImage from "../../utils/UploadImage";
 // TODO: Keeping base64 of the an image is super laggy bc the field is humongous
 const FormEventImage = ({ name }) => {
   const {
-    setFieldTouched,
     setFieldValue,
     values,
-    errors,
-    touched,
   } = useFormikContext();
 
   useEffect(() => {
@@ -32,6 +29,7 @@ const FormEventImage = ({ name }) => {
           status,
         } = await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (status !== "granted") {
+          // eslint-disable-next-line no-alert
           alert("Sorry, we need camera roll permissions to make this work!");
         }
       }
@@ -51,17 +49,19 @@ const FormEventImage = ({ name }) => {
     // TODO: What's behavior on android
     if (!result.cancelled) {
       const base64Img =
-        Platform.OS == "ios"
+        Platform.OS === "ios"
           ? `data:image/jpg;base64,${result.base64}`
           : result.uri;
 
       uploadImage(base64Img)
         .then(async (r) => {
-          let data = await r.json();
+          const data = await r.json();
+          // eslint-disable-next-line no-console
           console.log("url: ", data.secure_url);
           setFieldValue(name, data.secure_url);
         })
         .catch((err) => {
+          // eslint-disable-next-line no-console
           console.log("failed picture upload ", err);
         });
     }

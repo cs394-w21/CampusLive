@@ -2,20 +2,18 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { textFont } from "../../constants/Styles";
 
-const EventChoiceButton = ({ text, choice, handleEventChoice, buttonType }) => {
-  return (
-    <TouchableOpacity
-      onPress={() => handleEventChoice(choice)}
-      style={
-        buttonType === "accept" ? styles.acceptButton : styles.declineButton
-      }
-    >
-      <Text numberOfLines={1} style={styles.buttonText}>
-        {text}
-      </Text>
-    </TouchableOpacity>
+const EventChoiceButton = ({ text, choice, handleEventChoice, buttonType }) => (
+  <TouchableOpacity
+    onPress={() => handleEventChoice(choice)}
+    style={
+      buttonType === "accept" ? styles.acceptButton : styles.declineButton
+    }
+  >
+    <Text numberOfLines={1} style={styles.buttonText}>
+      {text}
+    </Text>
+  </TouchableOpacity>
   );
-};
 
 const EventChoiceButtons = ({ handleEventChoice }) => (
   <View style={styles.buttonView}>
@@ -27,7 +25,7 @@ const EventChoiceButtons = ({ handleEventChoice }) => (
     />
     <EventChoiceButton
       text="Interested"
-      choice={true}
+      choice
       handleEventChoice={handleEventChoice}
       buttonType="accept"
     />

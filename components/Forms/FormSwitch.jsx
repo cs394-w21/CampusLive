@@ -12,10 +12,11 @@ export default function FormSwitch({name, title, onChange = x => x, ...otherProp
       <Text style={styles.title}>{title}</Text>
       <Switch
         value={value}
-        onValueChange={(value) => {
-          onChange(value);
-          setFieldValue(name, value);
+        onValueChange={(newValue) => {
+          onChange(newValue);
+          setFieldValue(name, newValue);
         }}
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...otherProps}
       />
     </View>

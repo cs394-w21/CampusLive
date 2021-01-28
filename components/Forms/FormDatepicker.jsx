@@ -20,6 +20,7 @@ export default function FormField({ name, width, ...otherProps }) {
         onChangeText={(text) => setFieldValue(name, text)}
         onBlur={() => setFieldTouched(name)}
         width={width}
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...otherProps}
       />
       <FormErrorMessage error={errors[name]} visible={touched[name]} />

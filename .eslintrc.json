@@ -5,10 +5,9 @@
         "node": true
     },
     "extends": [
-        // "plugin:react/recommended",
+        "eslint:recommended",
         "airbnb",
-        "prettier",
-        "airbnb/hooks"
+        "prettier"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -17,12 +16,10 @@
         "ecmaVersion": 12,
         "sourceType": "module"
     },
-    "plugins": [
-        "react"
-    ],
     "rules": {
-        "arrow-body-style": ["error", "always"],
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "no-use-before-define": ["error", { "variables": false }]
+        "arrow-body-style": ["error", "as-needed"],
+        "no-use-before-define": ["error", { "variables": false }],
+        "react/prop-types": 0,
+        "react/jsx-fragments": 0
     }
 }
