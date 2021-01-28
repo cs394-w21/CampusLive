@@ -20,6 +20,7 @@
         "arrow-body-style": ["error", "as-needed"],
         "no-use-before-define": ["error", { "variables": false }],
         "react/prop-types": 0,
-        "react/jsx-fragments": 0
+        "react/jsx-fragments": 0,
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
     }
 }
