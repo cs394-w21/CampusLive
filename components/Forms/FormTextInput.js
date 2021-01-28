@@ -1,7 +1,15 @@
 import React from "react";
-import { View, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
+import { windowWidth } from "../../constants/WindowSize";
 import Colors from "./colors";
 
 export default function FormTextInput({
@@ -12,7 +20,12 @@ export default function FormTextInput({
   ...otherProps
 }) {
   return (
-    <View style={[styles.container, { width }]}>
+    // <KeyboardAvoidingView
+    //   behavior={Platform.OS === "ios" ? "padding" : "height"}
+    //   style={{ flex: 1 }}
+    // >
+    //   <SafeAreaView style={{ flex: 1 }}>
+    <View style={styles.container}>
       {leftIcon && (
         <MaterialCommunityIcons
           name={leftIcon}
@@ -37,23 +50,26 @@ export default function FormTextInput({
         </TouchableOpacity>
       )}
     </View>
+    //   </SafeAreaView>
+    // </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.lightGrey,
-    borderRadius: 15,
+    borderRadius: 25,
     flexDirection: "row",
     padding: 10,
     marginVertical: 5,
+    width: Math.min(windowWidth * 0.75, 400),
   },
   icon: {
     marginRight: 5,
   },
   input: {
     flex: 1,
-    width: "100%",
+    width: Math.min(windowWidth * 0.75, 400),
     fontSize: 18,
     color: Colors.black,
   },

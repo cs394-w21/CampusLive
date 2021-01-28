@@ -15,17 +15,13 @@ export default function FormField({ name, width, ...otherProps }) {
 
   return (
     <React.Fragment>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
-        <FormTextInput
-          value={values[name]}
-          onChangeText={(text) => setFieldValue(name, text)}
-          onBlur={() => setFieldTouched(name)}
-          width={width}
-          {...otherProps}
-        />
-      </KeyboardAvoidingView>
+      <FormTextInput
+        value={values[name]}
+        onChangeText={(text) => setFieldValue(name, text)}
+        onBlur={() => setFieldTouched(name)}
+        width={width}
+        {...otherProps}
+      />
       <FormErrorMessage error={errors[name]} visible={touched[name]} />
     </React.Fragment>
   );

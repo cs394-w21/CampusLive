@@ -9,14 +9,13 @@ import {
 } from "react-native";
 import { useFormikContext } from "formik";
 import * as ImagePicker from "expo-image-picker";
+import FormErrorMessage from "./FormErrorMessage";
 import { windowWidth } from "../../constants/WindowSize";
 import { textFont } from "../../constants/Styles";
-import FormErrorMessage from "./FormErrorMessage";
-import {
-  eventUploadBackground,
-  LOADING_GIF,
-} from "../../constants/CreateEventConstants";
+import { eventUploadBackground } from "../../constants/CreateEventConstants";
+import uploadImage from "../../utils/UploadImage";
 
+// TODO: Keeping base64 of the an image is super laggy bc the field is humongous
 const FormEventImage = ({ name }) => {
   const {
     setFieldTouched,
@@ -55,7 +54,16 @@ const FormEventImage = ({ name }) => {
         Platform.OS == "ios"
           ? `data:image/jpg;base64,${result.base64}`
           : result.uri;
-      setFieldValue(name, base64Img);
+
+      uploadImage(base64Img)
+        .then(async (r) => {
+          let data = await r.json();
+          console.log("url: ", data.secure_url);
+          setFieldValue(name, data.secure_url);
+        })
+        .catch((err) => {
+          console.log("failed picture upload ", err);
+        });
     }
   };
 
@@ -83,6 +91,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
     fontFamily: textFont,
+    textAlign: "center",
     backgroundColor: "rgba(52, 52, 52, 0.8)",
     borderStyle: "solid",
     padding: 5,
@@ -91,17 +100,22 @@ const styles = StyleSheet.create({
   eventImage: {
     width: Math.min(300, windowWidth * 0.4),
     height: Math.min(300, windowWidth * 0.4),
+    borderStyle: "dashed",
+    borderColor: "rgba(0, 0, 0, .4)",
+    borderRadius: 15,
+    borderWidth: 1,
+    overflow: "hidden",
   },
   uploadButton: {},
   textContainer: {
     textAlignVertical: "center",
-    textAlign: "center",
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
   },
   uploadContainer: {
     marginVertical: 5,
+    paddingTop: 10,
   },
 });
 
