@@ -1,4 +1,4 @@
-import { windowWidth, windowHeight } from "./WindowSize";
+import { windowWidth } from "./WindowSize";
 
 const textFont = "Helvetica";
 

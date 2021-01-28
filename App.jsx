@@ -1,27 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { enableScreens } from "react-native-screens";
 import { NavigationContainer } from "@react-navigation/native";
-// import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-// import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Entypo } from "@expo/vector-icons";
-import { StyleSheet } from "react-native";
-import { firebase } from "./utils/firebase";
-import UserContext from "./utils/UserContext";
-import EventsContext from "./utils/EventsContext";
-import SelectEventScreen from "./screens/SelectEventScreen";
-import DisplayEventScreen from "./screens/DisplayEventScreen";
-import CreateEventScreen from "./screens/CreateEventScreen";
+import firebase from "./src/utils/firebase";
+import UserContext from "./src/utils/UserContext";
+import EventsContext from "./src/utils/EventsContext";
+import SelectEventScreen from "./src/screens/SelectEventScreen";
+import DisplayEventScreen from "./src/screens/DisplayEventScreen";
+import CreateEventScreen from "./src/screens/CreateEventScreen";
 
-// const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
-// const Stack = createStackNavigator();
 enableScreens();
 
 const adminUID = "admin";
 
 export default function App() {
-  const [auth, setAuth] = useState();
+  // const [auth, setAuth] = useState();
   const [user, setUser] = useState(null);
   const [events, setEvents] = useState();
 
@@ -30,37 +25,39 @@ export default function App() {
     const handleData = (snap) => {
       setUser({ uid: adminUID, ...snap.val() });
     };
+    // eslint-disable-next-line no-alert
     db.on("value", handleData, (error) => alert(error));
     return () => {
       db.off("value", handleData);
     };
   }, []);
 
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged((auth) => {
-      setAuth(auth);
-    });
-  });
+  // useEffect(() => {
+  //   firebase.auth().onAuthStateChanged((auth) => {
+  //     setAuth(auth);
+  //   });
+  // });
 
   useEffect(() => {
     if (user && user.uid) {
       const db = firebase.database().ref("events");
       const handleData = (snap) => {
-        const events = snap.val();
-        if (events) {
-          for (const eventChoice in user.events_choice) {
-            events[eventChoice].choice = user.events_choice[eventChoice];
-          }
-          setEvents(events);
+        const data = snap.val();
+        if (data) {
+          Object.entries(user.events_choice).forEach(([event, choice]) => {
+            data[event].choice = choice;
+          });
+          setEvents(data);
         }
       };
+      // eslint-disable-next-line no-alert
       db.on("value", handleData, (error) => alert(error));
       return () => {
         db.off("value", handleData);
       };
-    } else {
-      setEvents(null);
     }
+    setEvents(null);
+    return undefined;
   }, [user]);
 
   return (
@@ -119,5 +116,3 @@ export default function App() {
     </UserContext.Provider>
   );
 }
-
-const styles = StyleSheet.create({});

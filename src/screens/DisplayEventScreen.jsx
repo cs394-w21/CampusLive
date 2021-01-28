@@ -1,3 +1,4 @@
+/* eslint-disable react/style-prop-object */
 import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
@@ -7,16 +8,16 @@ import Banner from "../components/Banner";
 import EventDetails from "../components/EventDetails";
 
 const DisplayEventScreen = ({ navigation }) => {
-  const { events, setEvents } = useContext(EventsContext);
+  const { events } = useContext(EventsContext);
   const [dispEvents, setDispEvents] = useState([]);
 
   useEffect(() => {
     const listener = navigation.addListener("focus", () => {
       const tempEvents = Object.keys(events)
         .filter((key) => events[key].choice)
-        .map(function (event) {
-          return <EventDetails key={events[event].id} event={events[event]} />;
-        });
+        .map((event) => (
+          <EventDetails key={events[event].id} event={events[event]} />
+        ));
       setDispEvents(tempEvents);
     });
 

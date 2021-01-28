@@ -5,7 +5,7 @@ const FAILED_UPLOAD = "FAILED";
 
 const uploadImage = async (file) => {
   const data = {
-    file: file,
+    file,
     upload_preset: CLOUDINARY_UPLOAD_TRANSFORM_PRESET,
   };
 

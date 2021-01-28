@@ -6,7 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint": "./node_modules/.bin/eslint ",
+    "lint": "./node_modules/.bin/eslint **/*.jsx",
     "deploy": "expo build:web & firebase deploy"
   },
   "dependencies": {

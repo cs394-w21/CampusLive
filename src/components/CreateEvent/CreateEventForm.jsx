@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import Moment from "moment";
 import Form from "../Form";
 import { eventUploadBackground } from "../../constants/CreateEventConstants";
-import { firebase } from "../../utils/firebase";
+import firebase from "../../utils/firebase";
 
 const dateRegex = /^(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])\/(2[0-9])/;
 
