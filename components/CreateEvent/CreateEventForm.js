@@ -25,7 +25,7 @@ const validationSchema = Yup.object().shape({
         : true;
     })
     .label("End Time"),
-  description: Yup.string().required().label("Description"),
+  description: Yup.string().label("Description"),
 });
 
 const CreateEventForm = () => {
