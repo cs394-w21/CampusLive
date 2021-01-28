@@ -1,9 +1,8 @@
 /* eslint-disable react/style-prop-object */
 import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet, SafeAreaView } from "react-native";
+import { StyleSheet, SafeAreaView, ScrollView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import EventsContext from "../utils/EventsContext";
-import AcceptedEventList from "../components/DisplayEvent/AcceptedEventList";
 import Banner from "../components/Banner";
 import EventDetails from "../components/EventDetails";
 
@@ -27,7 +26,7 @@ const DisplayEventScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Banner />
-      <AcceptedEventList displayEvents={dispEvents} />
+      <ScrollView>{dispEvents}</ScrollView>
       <StatusBar style="auto" />
     </SafeAreaView>
   );
