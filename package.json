@@ -5,7 +5,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "lint": "./node_modules/.bin/eslint ",
+    "deploy": "expo build:web & firebase deploy"
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.0",
@@ -14,12 +16,15 @@
     "@react-navigation/drawer": "^5.12.0",
     "@react-navigation/native": "^5.9.0",
     "@react-navigation/stack": "^5.13.0",
+    "eslint": "^7.18.0",
+    "eslint-config-prettier": "^7.2.0",
     "expo": "^40.0.0",
     "expo-image-picker": "~9.2.0",
     "expo-status-bar": "~1.0.3",
     "firebase": "7.9.0",
     "formik": "^2.2.6",
     "moment": "^2.29.1",
+    "prettier": "^2.2.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
@@ -32,7 +37,13 @@
     "yup": "^0.32.8"
   },
   "devDependencies": {
-    "@babel/core": "~7.9.0"
+    "@babel/core": "~7.9.0",
+    "eslint": "^7.18.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0"
   },
   "private": true
 }
