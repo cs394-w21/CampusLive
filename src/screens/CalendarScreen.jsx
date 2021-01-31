@@ -1,31 +1,42 @@
+/* eslint-disable react/style-prop-object */
 import React, { useContext, useState, useEffect } from "react";
-import { View } from "react-native";
-import { Agenda } from "react-native-calendars";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { StatusBar } from "expo-status-bar";
+// import { Calendar, CalendarList, Agenda } from "react-native-calendars";
+// import Calendar from "react-calendar";
+import CalendarStrip from "react-native-calendar-strip";
+import Calendar from "@lls/react-light-calendar";
+import "@lls/react-light-calendar/dist/index.css"; // Default Style
+
 import EventsContext from "../utils/EventsContext";
 import CalendarEvent from "../components/DisplayEvent/CalendarEvent";
+import Banner from "../components/Banner";
+
+const formatNumber = (number) => (number < 10 ? `0${number}` : number);
 
 const CalendarScreen = ({ navigation }) => {
   const { events } = useContext(EventsContext);
   const [dispEvents, setDispEvents] = useState({});
+  const [startDate, setStartDate] = useState(new Date().getTime());
+  const [endDate, setEndDate] = useState(new Date().getTime());
 
-  const formatNumber = (number) => (number < 10 ? `0${number}` : number);
-
-  const emptyDates = {};
+  const eventDates = {};
   const year = new Date().getFullYear();
   const currMonth = new Date().getMonth() + 1;
   for (let newMonth = currMonth; newMonth < currMonth + 3; newMonth++) {
-    Array(new Date(year, newMonth, 0).getDate())
-      .keys()
-      .forEach((day) => {
-        emptyDates[
-          `${year}-${formatNumber(newMonth)}-${formatNumber(day + 1)}`
-        ] = [];
-      });
+    const dateIter = Array(new Date(year, newMonth, 0).getDate()).keys();
+    let day = dateIter.next();
+    while (!day.done) {
+      eventDates[
+        `${year}-${formatNumber(newMonth)}-${formatNumber(day.value + 1)}`
+      ] = [];
+      day = dateIter.next();
+    }
   }
 
   useEffect(() => {
-    const dateItemsObj = emptyDates;
-
+    const dateItemsObj = eventDates;
+    // console.log(events);
     const listener = navigation.addListener("focus", () => {
       Object.keys(events)
         .filter((key) => events[key].choice)
@@ -40,25 +51,58 @@ const CalendarScreen = ({ navigation }) => {
           }
         });
       setDispEvents(dateItemsObj);
+      // console.log(dateItemsObj);
     });
 
     return listener;
   }, [navigation]);
+  // console.log(dispEvents);
 
   return (
-    <Agenda
-      // The list of items that have to be displayed in agenda. If you want to render item as empty date
-      // the value of date key has to be an empty array []. If there exists no value for date key it is
-      // considered that the date in question is not yet loaded
-      // items={emptyDates}
-      items={dispEvents}
-      // Agenda container style
-      renderItem={(item) => <CalendarEvent event={item} />}
-      renderEmptyDate={() => <View />}
-      renderEmptyData={() => <View />}
-      style={{}}
-    />
+    <SafeAreaView style={styles.container}>
+      <View>
+        <Banner />
+        {/* <CalendarStrip style={styles.calendar} /> */}
+        <Calendar
+          startDate={startDate}
+          disableDates={(date) => false}
+          onChange={(newStart, newEnd) => {
+            console.log("start", new Date(newStart));
+            console.log("end", new Date(newEnd));
+
+            setStartDate(newStart);
+          }}
+        />
+
+        <Text>Hello world</Text>
+      </View>
+    </SafeAreaView>
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#E4E0EE",
+  },
+  calendar: {
+    margin: 10,
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: "black",
+  },
+});
+
 export default CalendarScreen;
+/* <Agenda
+        // The list of items that have to be displayed in agenda. If you want to render item as empty date
+        // the value of date key has to be an empty array []. If there exists no value for date key it is
+        // considered that the date in question is not yet loaded
+        // items={emptyeventDates}
+        items={eventDates}
+        // Agenda container style
+        renderItem={(item) => <CalendarEvent event={item} />}
+        renderEmptyDate={() => <View />}
+        renderEmptyData={() => <View />}
+        style={{}}
+      /> */
