@@ -5,9 +5,7 @@ import { StatusBar } from "expo-status-bar";
 // import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 // import Calendar from "react-calendar";
 import CalendarStrip from "react-native-calendar-strip";
-import Calendar from "@lls/react-light-calendar";
-import "@lls/react-light-calendar/dist/index.css"; // Default Style
-
+import DayPicker from "react-day-picker";
 import EventsContext from "../utils/EventsContext";
 import CalendarEvent from "../components/DisplayEvent/CalendarEvent";
 import Banner from "../components/Banner";
@@ -64,13 +62,16 @@ const CalendarScreen = ({ navigation }) => {
         <Banner />
         {/* <CalendarStrip style={styles.calendar} /> */}
         <Calendar
-          startDate={startDate}
+          startDate={null}
+          endDate={endDate}
           disableDates={(date) => false}
           onChange={(newStart, newEnd) => {
-            console.log("start", new Date(newStart));
-            console.log("end", new Date(newEnd));
-
-            setStartDate(newStart);
+            console.log(
+              `start: ${new Date(newStart).getDate()}; end: ${new Date(
+                newEnd
+              ).getDate()}`
+            );
+            setEndDate(newEnd);
           }}
         />
 

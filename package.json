@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.0",
-    "@lls/react-light-calendar": "^2.2.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "^5.11.4",
     "@react-navigation/drawer": "^5.12.0",
@@ -28,6 +27,7 @@
     "prettier": "^2.2.1",
     "react": "16.13.1",
     "react-calendar": "^3.3.0",
+    "react-day-picker": "^7.4.8",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
     "react-native-calendar-strip": "^2.1.5",
@@ -38,7 +38,6 @@
     "react-native-screens": "~2.15.0",
     "react-native-web": "~0.13.12",
     "readme-md-generator": "^1.0.0",
-    "undefined": "@lls/react-light-calendar/dist/index.css",
     "yup": "^0.32.8"
   },
   "devDependencies": {
