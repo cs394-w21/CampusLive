@@ -18,12 +18,12 @@ const validationSchema = Yup.object().shape({
     .label("Start Time"),
   endTime: Yup.string()
     .matches(dateRegex, "Date must be in format MM/DD/YY")
-    .test("is-greater", "End should be after start.", (value) => {
-      const { startTime } = this.parent;
-      return value && value !== ""
-        ? Moment(value, "MM-DD-YY").isSameOrAfter(Moment(startTime, "MM-DD-YY"))
-        : true;
-    })
+    // .test("is-greater", "End should be after start.", (value) => {
+    //   const { startTime } = this.parent;
+    //   return value && value !== ""
+    //     ? Moment(value, "MM-DD-YY").isSameOrAfter(Moment(startTime, "MM-DD-YY"))
+    //     : true;
+    // })
     .label("End Time"),
   description: Yup.string().label("Description"),
 });

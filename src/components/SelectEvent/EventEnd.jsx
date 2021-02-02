@@ -1,13 +1,13 @@
 import React from "react";
 import { StyleSheet, Button, View, Text } from "react-native";
 import { textFont, eventCard } from "../../constants/Styles";
-import { windowWidth } from "../../constants/WindowSize";
+import { windowWidth, windowHeight } from "../../constants/WindowSize";
 
 const TitleField = ({ value }) => (
   <View>
     <Text style={styles.title}>{value}</Text>
   </View>
-  );
+);
 
 const EventEnd = ({ viewAgainPress }) => (
   <View style={styles.container}>
@@ -21,7 +21,7 @@ const EventEnd = ({ viewAgainPress }) => (
       />
     </View>
   </View>
-  );
+);
 
 const styles = StyleSheet.create({
   container: { ...eventCard },
@@ -34,11 +34,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     width: windowWidth * 0.5,
-    justifyContent: "space-evenly",
+    justifyContent: "center",
     padding: 10,
+    maxHeight: 50
   },
   button: {
     width: 6,
+
   },
 });
 

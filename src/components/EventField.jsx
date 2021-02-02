@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: textFont,
+    fontSize: 20
   },
 });
 

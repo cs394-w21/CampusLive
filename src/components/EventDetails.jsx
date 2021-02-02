@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, ScrollView } from "react-native";
 import Field from "./Field";
 import EventField from "./EventField";
 import { textFont, eventCard } from "../constants/Styles";
@@ -16,18 +16,20 @@ const getDateRange = (startDateString, endDateString) =>
 
 const EventDetails = ({ event }) => (
   <View style={styles.container}>
-    <TitleField value={event.title} />
-    <Image
-      source={{ uri: event.img }}
-      style={styles.image}
-      resizeMode="contain"
-    />
-    <EventField
-      text={getDateRange(event.startDateString, event.endDateString)}
-      icon="calendar"
-    />
-    <EventField text={event.location} icon="location-pin" />
-    <Field value={event.description} />
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <TitleField value={event.title} />
+      <Image
+        source={{ uri: event.img }}
+        style={styles.image}
+        resizeMode="contain"
+      />
+      <EventField
+        text={getDateRange(event.startDateString, event.endDateString)}
+        icon="calendar"
+      />
+      <EventField text={event.location} icon="location-pin" />
+      <Field value={event.description} />
+    </ScrollView>
   </View>
 );
 
@@ -52,6 +54,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     padding: 10,
   },
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
 
 export default EventDetails;

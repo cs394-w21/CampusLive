@@ -1,4 +1,4 @@
-import { windowWidth } from "./WindowSize";
+import { windowHeight, windowWidth } from "./WindowSize";
 
 const textFont = "Helvetica";
 
@@ -19,6 +19,7 @@ const eventCard = {
   shadowOpacity: 0.5,
   shadowRadius: 10,
   padding: 15,
+  height: windowHeight * .6
 };
 
 export { textFont, eventCard };

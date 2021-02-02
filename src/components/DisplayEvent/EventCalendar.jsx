@@ -9,8 +9,8 @@ const CalendarArrow = ({ direction }) =>
   direction === "left" ? (
     <Entypo name="chevron-left" size={20} color="black" />
   ) : (
-    <Entypo name="chevron-right" size={20} color="black" />
-  );
+      <Entypo name="chevron-right" size={20} color="black" />
+    );
 
 const EventCalendar = ({ markedEvents, selectedDay, setSelectedDay }) => {
   console.log(Object.entries(markedEvents));
@@ -43,7 +43,6 @@ const EventCalendar = ({ markedEvents, selectedDay, setSelectedDay }) => {
       onDayPress={onDayPress}
       markedDates={markedDates}
       markingType="multi-dot"
-      style={{}}
     />
   );
 };
