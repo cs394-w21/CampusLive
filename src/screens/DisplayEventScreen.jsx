@@ -5,6 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import EventsContext from "../utils/EventsContext";
 import Banner from "../components/Banner";
 import EventDetails from "../components/EventDetails";
+import AcceptedEventList from "../components/DisplayEvent/AcceptedEventList";
 
 const DisplayEventScreen = ({ navigation }) => {
   const { events } = useContext(EventsContext);
@@ -26,7 +27,7 @@ const DisplayEventScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Banner />
-      <ScrollView>{dispEvents}</ScrollView>
+      <AcceptedEventList displayEvents={dispEvents} />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
