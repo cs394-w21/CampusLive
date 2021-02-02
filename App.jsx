@@ -45,9 +45,9 @@ export default function App() {
       const handleData = (snap) => {
         const data = snap.val();
         if (data) {
-          Object.entries(user.events_choice).forEach(([event, choice]) => {
-            data[event].choice = choice;
-          });
+          // Object.entries(user.events_choice).forEach(([event, choice]) => {
+          //   data[event].choice = choice;
+          // });
           setEvents(data);
         }
       };

@@ -32,6 +32,13 @@ const CreateEventForm = () => {
   const [submitError, setSubmitError] = useState("");
 
   const handleCreateEvent = (values) => {
+    // values.startTime = firebase.firestore.Timestamp.fromDate(
+    //   new Date(values.startTime)
+    // );
+    // values.endTime = firebase.firestore.Timestamp.fromDate(
+    //   new Date(values.endTime)
+    // );
+
     firebase
       .database()
       .ref("events")
