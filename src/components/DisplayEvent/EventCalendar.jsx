@@ -2,7 +2,7 @@ import React from "react";
 import { Calendar } from "react-native-calendars";
 import { Entypo } from "@expo/vector-icons";
 
-const dot = { key: "dot", color: "blue", selectedDotColor: "yellow" };
+const dot = { color: "blue", selectedDotColor: "yellow" };
 
 // TODO: change color?
 const CalendarArrow = ({ direction }) =>
@@ -14,10 +14,13 @@ const CalendarArrow = ({ direction }) =>
 
 const EventCalendar = ({ markedEvents, selectedDay, setSelectedDay }) => {
   console.log(Object.entries(markedEvents));
-  const markedDates = Object.entries(markedEvents).map(([date, events]) => {
+  const markedDatesArr = Object.entries(markedEvents).map(([date, events]) => {
     const markedDatesInput = {
       [date]: {
-        dots: Object.keys(events).map(() => dot),
+        dots: Object.keys(events).map((eventId) => ({
+          ...dot,
+          key: `${date}_${eventId}`,
+        })),
         selected: date === selectedDay,
         selectedColor: "blue",
       },
@@ -28,8 +31,8 @@ const EventCalendar = ({ markedEvents, selectedDay, setSelectedDay }) => {
     }
     return markedDatesInput;
   });
-  const newObj = Object.assign({}, ...markedDates);
-
+  const markedDates = Object.assign({}, ...markedDatesArr);
+  console.log(markedDates);
   const onDayPress = (day) => {
     setSelectedDay(day.dateString);
   };
@@ -38,8 +41,9 @@ const EventCalendar = ({ markedEvents, selectedDay, setSelectedDay }) => {
     <Calendar
       renderArrow={(direction) => <CalendarArrow direction={direction} />}
       onDayPress={onDayPress}
-      markedDates={newObj}
+      markedDates={markedDates}
       markingType="multi-dot"
+      style={{}}
     />
   );
 };

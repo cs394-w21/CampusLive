@@ -1,19 +1,20 @@
 /* eslint-disable react/style-prop-object */
 import React, { useContext, useState, useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Banner from "../components/Banner";
 import EventsContext from "../utils/EventsContext";
 import EventCalendar from "../components/DisplayEvent/EventCalendar";
+import EventCalendarList from "../components/DisplayEvent/EventCalendarList";
 
 const CalendarScreen = ({ navigation }) => {
   const { events } = useContext(EventsContext);
-  const [selectedDay, setSelectedDay] = useState({});
+  const [selectedDay, setSelectedDay] = useState(undefined);
   const [markedEvents, setMarkedEvents] = useState({});
 
   useEffect(() => {
-    const tempMarkedEvents = {};
     const listener = navigation.addListener("focus", () => {
+      const tempMarkedEvents = {};
       Object.entries(events)
         .filter(([, event]) => event.choice)
         .forEach(([id, event]) => {
@@ -24,21 +25,26 @@ const CalendarScreen = ({ navigation }) => {
           tempMarkedEvents[event.startDateString][id] = event;
         });
       setMarkedEvents(tempMarkedEvents);
+      console.log(tempMarkedEvents);
     });
 
     return listener;
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Banner />
       <EventCalendar
         markedEvents={markedEvents}
         selectedDay={selectedDay}
         setSelectedDay={setSelectedDay}
       />
+      <EventCalendarList
+        selectedDay={selectedDay}
+        markedEvents={markedEvents}
+      />
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 };
 
