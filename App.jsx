@@ -10,6 +10,7 @@ import SelectEventScreen from "./src/screens/SelectEventScreen";
 import DisplayEventScreen from "./src/screens/DisplayEventScreen";
 import CreateEventScreen from "./src/screens/CreateEventScreen";
 import CalendarScreen from "./src/screens/CalendarScreen";
+import { formatDate } from "./src/utils/Dates";
 
 const Tab = createBottomTabNavigator();
 enableScreens();
@@ -43,16 +44,30 @@ export default function App() {
     if (user && user.uid) {
       const db = firebase.database().ref("events");
       const handleData = (snap) => {
-        const data = snap.val();
-        if (data) {
-          // Object.entries(user.events_choice).forEach(([event, choice]) => {
-          //   data[event].choice = choice;
-          // });
-          setEvents(data);
+        const eventsDb = snap.val();
+        if (eventsDb) {
+          Object.entries(user.eventChoice).forEach(([eventId, choice]) => {
+            eventsDb[eventId].choice = choice;
+          });
+          let date = new Date(0);
+          Object.keys(eventsDb).forEach((eventId) => {
+            const event = eventsDb[eventId];
+
+            date = new Date(0);
+            date.setUTCSeconds(event.startTime.seconds);
+            event.startDateTime = date;
+            event.startDateString = formatDate(date);
+            // TODO handle if no end date
+            date = new Date(0);
+            date.setUTCSeconds(event.endTime.seconds);
+            event.endDateTime = date;
+            event.endDateString = formatDate(date);
+          });
+          setEvents(eventsDb);
         }
       };
-      // eslint-disable-next-line no-alert
-      db.on("value", handleData, (error) => alert(error));
+      // eslint-disable-next-line no-console
+      db.on("value", handleData, (error) => console.log(error));
       return () => {
         db.off("value", handleData);
       };
@@ -79,7 +94,7 @@ export default function App() {
               },
             }}
             tabBarOptions={{ showIcon: true }}
-            initialRouteName="CreateEventScreen"
+            initialRouteName="SelectEventScreen"
           >
             <Tab.Screen
               name="SelectEventScreen"

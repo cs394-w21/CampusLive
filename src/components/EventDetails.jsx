@@ -11,13 +11,8 @@ const TitleField = ({ value }) => (
   </View>
 );
 
-// const TimeField = ({ startTime, endTime }) => (
-//   <View>
-//     <Text style={{}}>
-//       {startTime + (endTime !== "" ? ` - ${endTime}` : "")}
-//     </Text>
-//   </View>
-// );
+const getDateRange = (startDateString, endDateString) =>
+  endDateString ? `${startDateString} - ${endDateString}` : startDateString;
 
 const EventDetails = ({ event }) => (
   <View style={styles.container}>
@@ -27,8 +22,10 @@ const EventDetails = ({ event }) => (
       style={styles.image}
       resizeMode="contain"
     />
-    {/* <TimeField startTime={event.startTime} endTime={event.endTime} /> */}
-    <EventField text={event.time} icon="calendar" />
+    <EventField
+      text={getDateRange(event.startDateString, event.endDateString)}
+      icon="calendar"
+    />
     <EventField text={event.location} icon="location-pin" />
     <Field value={event.description} />
   </View>

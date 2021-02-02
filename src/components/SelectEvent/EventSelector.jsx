@@ -26,6 +26,7 @@ const EventDisplay = ({
   handleEventChoice,
   viewAgainPress,
 }) => {
+  console.log(event);
   if (!event) {
     return <EventEnd viewAgainPress={viewAgainPress} />;
   }
