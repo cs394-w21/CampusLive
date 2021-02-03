@@ -23,12 +23,13 @@ const EventDetails = ({ event }) => (
         style={styles.image}
         resizeMode="contain"
       />
-      
-      
-      <EventField text={event.location} icon="location-pin" />
+
+
+      <EventField text={event.location} icon="location-pin" textStyle={styles.textStyle} />
       <EventField
         text={getDateRange(event.startDateString, event.endDateString)}
         icon="calendar"
+        textStyle={styles.textStyle}
       />
       <Field value={event.description} />
     </ScrollView>
@@ -61,6 +62,10 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  textStyle: {
+    fontFamily: textFont,
+    fontSize: 20
   }
 });
 

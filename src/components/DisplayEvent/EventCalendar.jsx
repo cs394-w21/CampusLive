@@ -1,6 +1,9 @@
 import React from "react";
 import { Calendar } from "react-native-calendars";
 import { Entypo } from "@expo/vector-icons";
+import { StyleSheet } from 'react-native';
+import { windowWidth } from "../../constants/WindowSize";
+import { textFont } from "../../constants/Styles";
 
 const dot = { color: "blue", selectedDotColor: "yellow" };
 
@@ -43,8 +46,18 @@ const EventCalendar = ({ markedEvents, selectedDay, setSelectedDay }) => {
       onDayPress={onDayPress}
       markedDates={markedDates}
       markingType="multi-dot"
+      style={styles.calendarStyle}
     />
   );
 };
+
+const styles = StyleSheet.create({
+  calendarStyle: {
+    borderWidth: 2,
+    borderColor: 'gray',
+    width: windowWidth * .8,
+    fontFamily: textFont
+  }
+});
 
 export default EventCalendar;
