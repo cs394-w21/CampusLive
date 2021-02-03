@@ -1,30 +1,30 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { textFont } from "../../constants/Styles";
+import { Entypo } from "@expo/vector-icons";
 
-const EventChoiceButton = ({ text, choice, handleEventChoice, buttonType }) => (
+
+const EventChoiceButton = ({ icon, choice, handleEventChoice, buttonType }) => (
   <TouchableOpacity
     onPress={() => handleEventChoice(choice)}
     style={
       buttonType === "accept" ? styles.acceptButton : styles.declineButton
     }
   >
-    <Text numberOfLines={1} style={styles.buttonText}>
-      {text}
-    </Text>
+    <Entypo name={icon} size={20} color="white" style={styles.icon} />
   </TouchableOpacity>
-  );
+);
 
 const EventChoiceButtons = ({ handleEventChoice }) => (
   <View style={styles.buttonView}>
     <EventChoiceButton
-      text="Not Interested"
+      icon="cross"
       choice={false}
       handleEventChoice={handleEventChoice}
       buttonType="decline"
     />
     <EventChoiceButton
-      text="Interested"
+      icon="check"
       choice
       handleEventChoice={handleEventChoice}
       buttonType="accept"
@@ -34,12 +34,20 @@ const EventChoiceButtons = ({ handleEventChoice }) => (
 // TODO: move this to the styles file
 const choiceButton = {
   flex: 1,
-  borderRadius: 5,
   justifyContent: "flex-end",
   alignItems: "center",
-  margin: 10,
-  height: 40,
+  marginTop: 0,
+  margin: 40,
   padding: 10,
+  elevation: 2,
+  width: 80,
+  height: 80,
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: 10,
+  borderRadius: 40,
+  backgroundColor: 'orange',
+  opacity: .8,
 };
 
 // TODO: Change button sizes
@@ -62,6 +70,9 @@ const styles = StyleSheet.create({
   declineButton: {
     ...choiceButton,
     backgroundColor: "red",
+  },
+  icon: {
+    fontSize: 35,
   },
 });
 

@@ -53,7 +53,7 @@ const CreateEventForm = () => {
   };
   // TODO: lazy upload image or do it right away
   return (
-    <Form
+    <Form 
       initialValues={{
         img: eventUploadBackground,
         title: "",
