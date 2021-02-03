@@ -13,12 +13,13 @@ const EventField = ({ text, icon }) => (
 
 const styles = StyleSheet.create({
   fieldContainer: {
-    padding: 10,
+    padding: 5,
     flex: 1,
     flexDirection: "row",
+    alignContent: "center"
   },
   icon: {
-    marginRight: 5,
+    marginRight: 10,
   },
   text: {
     fontFamily: textFont,

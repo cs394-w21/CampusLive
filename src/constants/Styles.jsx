@@ -1,12 +1,12 @@
 import { windowHeight, windowWidth } from "./WindowSize";
 
-const textFont = "Helvetica";
+const textFont = "Avenir";
 
 const eventCard = {
   flex: 1,
   backgroundColor: "#fff",
   alignItems: "center",
-  justifyContent: "center",
+  justifyContent: "space-evenly",
   borderRadius: 5,
   marginHorizontal: windowWidth * 0.1,
   width: windowWidth * 0.8,
