@@ -35,37 +35,37 @@ const styles = StyleSheet.create({
       width: 0,
       height: 4,
     },
-    titleContainer: {
-      flexDirection: "row",
-      justifyContent: "flex-start",
-      alignItems: "center",
-      flexWrap: "wrap",
-    },
-    eventTitle: {
-      fontFamily: textFont,
-      fontSize: 20,
-      fontWeight: "bold",
-      color: "#4e2a84",
-    },
-    icon: {
-      marginRight: 10,
-    },
-    hostStyle: {
-      textAlign: "center",
-      fontFamily: textFont,
-      textAlignVertical: "center",
-    },
-    hostNameStyle: {
-      textAlign: "center",
-      fontFamily: textFont,
-      textAlignVertical: "center",
-      fontWeight: "bold",
-    },
-    hostContainer: {
-      flexDirection: "row",
-      justifyContent: "flex-start",
-      alignItems: "center",
-    },
+  },
+  titleContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    flexWrap: "wrap",
+  },
+  eventTitle: {
+    fontFamily: textFont,
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#4e2a84",
+  },
+  icon: {
+    marginRight: 10,
+  },
+  hostStyle: {
+    textAlign: "center",
+    fontFamily: textFont,
+    textAlignVertical: "center",
+  },
+  hostNameStyle: {
+    textAlign: "center",
+    fontFamily: textFont,
+    textAlignVertical: "center",
+    fontWeight: "bold",
+  },
+  hostContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
 });
 

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     padding: 5,
     flex: 1,
     flexDirection: "row",
-    alignContent: "center"
+    alignContent: "center",
   },
   icon: {
     marginRight: 10,
