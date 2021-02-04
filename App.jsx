@@ -10,7 +10,7 @@ import SelectEventScreen from "./src/screens/SelectEventScreen";
 import DisplayEventScreen from "./src/screens/DisplayEventScreen";
 import CreateEventScreen from "./src/screens/CreateEventScreen";
 import CalendarScreen from "./src/screens/CalendarScreen";
-import { formatDate } from "./src/utils/Dates";
+import { formatDateToString } from "./src/utils/Dates";
 
 const Tab = createBottomTabNavigator();
 enableScreens();
@@ -54,14 +54,16 @@ export default function App() {
             const event = eventsDb[eventId];
 
             date = new Date(0);
+            // date.setUTCSeconds(event.startDateTime.seconds);
             date.setUTCSeconds(event.startTime.seconds);
             event.startDateTime = date;
-            event.startDateString = formatDate(date);
+            event.startDateString = formatDateToString(date);
             // TODO handle if no end date
             date = new Date(0);
+            // date.setUTCSeconds(event.endDateTime.seconds);
             date.setUTCSeconds(event.endTime.seconds);
             event.endDateTime = date;
-            event.endDateString = formatDate(date);
+            event.endDateString = formatDateToString(date);
           });
           setEvents(eventsDb);
         }

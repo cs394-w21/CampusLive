@@ -6,25 +6,28 @@ import Form from "../Form";
 import { eventUploadBackground } from "../../constants/CreateEventConstants";
 import firebase from "../../utils/firebase";
 
-const dateRegex = /^(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])\/(2[0-9])/;
+const dateRegex = /^(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])\/(2[0-9]) ([0-9]|1[012]):([0-5][0-9]) (AM|PM)/;
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().label("Title"),
   host: Yup.string().required().label("Host"),
   location: Yup.string().required().label("Location"),
-  startTime: Yup.string()
-    .matches(dateRegex, "Date must be in format MM/DD/YY")
+  startDateTime: Yup.string()
+    .matches(dateRegex, "Date must be in format MM/DD/YY HH:MM AM")
     .required()
-    .label("Start Time"),
-  endTime: Yup.string()
-    .matches(dateRegex, "Date must be in format MM/DD/YY")
-    // .test("is-greater", "End should be after start.", (value) => {
-    //   const { startTime } = this.parent;
-    //   return value && value !== ""
-    //     ? Moment(value, "MM-DD-YY").isSameOrAfter(Moment(startTime, "MM-DD-YY"))
-    //     : true;
-    // })
-    .label("End Time"),
+    .label("Start Date and Time"),
+  endDateTime: Yup.string()
+    .matches(dateRegex, "Date must be in format MM/DD/YY HH:MM AM")
+    // eslint-disable-next-line func-names
+    .test("is-greater", "End should be after start", function (value) {
+      const { startDateTime } = this.parent;
+      return value && value !== ""
+        ? Moment(value, "MM/DD/YY hh:mm a").isAfter(
+            Moment(startDateTime, "MM/DD/YY hh:mm a")
+          )
+        : true;
+    })
+    .label("End Date and Time"),
   description: Yup.string().label("Description"),
 });
 
@@ -32,12 +35,12 @@ const CreateEventForm = () => {
   const [submitError, setSubmitError] = useState("");
 
   const handleCreateEvent = (values) => {
-    // values.startTime = firebase.firestore.Timestamp.fromDate(
-    //   new Date(values.startTime)
-    // );
-    // values.endTime = firebase.firestore.Timestamp.fromDate(
-    //   new Date(values.endTime)
-    // );
+    values.startDateTime = firebase.firestore.Timestamp.fromDate(
+      new Date(values.startDateTime)
+    );
+    values.endDateTime = firebase.firestore.Timestamp.fromDate(
+      new Date(values.endDateTime)
+    );
 
     firebase
       .database()
@@ -51,16 +54,16 @@ const CreateEventForm = () => {
         setSubmitError(error.message);
       });
   };
-  // TODO: lazy upload image or do it right away
+
   return (
-    <Form 
+    <Form
       initialValues={{
         img: eventUploadBackground,
         title: "",
         host: "",
         location: "",
-        startTime: "",
-        endTime: "",
+        startDateTime: "",
+        endDateTime: "",
         description: "",
       }}
       onSubmit={(values) => handleCreateEvent(values)}
@@ -76,33 +79,28 @@ const CreateEventForm = () => {
       />
       <Form.Field
         name="host"
-        // leftIcon="account"
         placeholder="Host"
         autoCapitalize="none"
         textAlign="center"
       />
       <Form.Field
         name="location"
-        // leftIcon="map-marker"
         placeholder="Location"
         autoCapitalize="none"
         textAlign="center"
       />
       <Form.Field
-        name="startTime"
-        // leftIcon="clock-in"
-        placeholder="Start Time"
+        name="startDateTime"
+        placeholder="Start Date and Time"
         textAlign="center"
       />
       <Form.Field
-        name="endTime"
-        // leftIcon="clock-out"
-        placeholder="End Time"
+        name="endDateTime"
+        placeholder="End Date and Time"
         textAlign="center"
       />
       <Form.Field
         name="description"
-        // leftIcon="card-text-outline"
         placeholder="Description"
         autoCapitalize="none"
         textAlign="center"
