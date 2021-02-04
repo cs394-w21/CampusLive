@@ -1,12 +1,11 @@
 /* eslint-disable react/style-prop-object */
 import React, { useContext, useState, useEffect } from "react";
-import { StyleSheet, SafeAreaView, View } from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Banner from "../components/Banner";
 import EventsContext from "../utils/EventsContext";
 import EventCalendar from "../components/DisplayEvent/EventCalendar";
 import EventCalendarList from "../components/DisplayEvent/EventCalendarList";
-import { windowHeight } from "../constants/WindowSize";
 
 const CalendarScreen = ({ navigation }) => {
   const { events } = useContext(EventsContext);
@@ -26,7 +25,7 @@ const CalendarScreen = ({ navigation }) => {
           tempMarkedEvents[event.startDateString][id] = event;
         });
       setMarkedEvents(tempMarkedEvents);
-      console.log(tempMarkedEvents);
+      // console.log(tempMarkedEvents);
     });
 
     return listener;
@@ -55,8 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#E4E0EE",
     alignItems: "center",
     justifyContent: "center",
-  }
-
+  },
 });
 
 export default CalendarScreen;

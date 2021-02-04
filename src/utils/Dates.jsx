@@ -17,11 +17,6 @@ const monthMap = [
 
 const formatNumber = (number) => (number < 10 ? `0${number}` : number);
 
-const formatDateToString = (date) =>
-  `${date.getFullYear()}-${formatNumber(date.getMonth() + 1)}-${formatNumber(
-    date.getDate()
-  )}`;
-
 const getTime = (date) => {
   let dateTime = "";
   const hour = date.getHours();
@@ -36,6 +31,11 @@ const getTime = (date) => {
   return dateTime;
 };
 
+const formatDateToString = (date) =>
+  `${date.getFullYear()}-${formatNumber(date.getMonth() + 1)}-${formatNumber(
+    date.getDate()
+  )}`;
+
 const formatDateTimeToString = (date) => {
   let dateTime = "";
   dateTime += `${dayOfWeekMap[date.getDay()]}, `;
@@ -46,4 +46,19 @@ const formatDateTimeToString = (date) => {
   return dateTime;
 };
 
-export { formatDateToString, formatDateTimeToString, getTime };
+const formatDateTimeRangeToString = (startDateTime, endDateTime) => {
+  let dateRange = "";
+  dateRange += formatDateTimeToString(startDateTime);
+  if (endDateTime) {
+    dateRange += `- ${formatDateTimeToString(endDateTime)}`;
+  }
+
+  return dateRange;
+};
+
+export {
+  formatDateToString,
+  formatDateTimeToString,
+  getTime,
+  formatDateTimeRangeToString,
+};

@@ -35,9 +35,11 @@ const CreateEventForm = () => {
   const [submitError, setSubmitError] = useState("");
 
   const handleCreateEvent = (values) => {
+    // eslint-disable-next-line no-param-reassign
     values.startDateTime = firebase.firestore.Timestamp.fromDate(
       new Date(values.startDateTime)
     );
+    // eslint-disable-next-line no-param-reassign
     values.endDateTime = firebase.firestore.Timestamp.fromDate(
       new Date(values.endDateTime)
     );

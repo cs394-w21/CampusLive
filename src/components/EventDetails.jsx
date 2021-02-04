@@ -15,20 +15,10 @@ const TitleField = ({ value }) => (
 
 const TimeField = ({ text, icon }) => (
   <View style={styles.fieldContainer}>
-    <Entypo name={icon} size={15} color="black" style={styles.icon} />
+    <Entypo name={icon} size={20} color="black" style={styles.icon} />
     <Text style={styles.text}>{text}</Text>
   </View>
 );
-
-const getDateRange = (startDateTime, endDateTime) => {
-  let dateRange = "";
-  dateRange += formatDateTimeToString(startDateTime);
-  if (endDateTime) {
-    dateRange += `- ${formatDateTimeToString(endDateTime)}`;
-  }
-
-  return dateRange;
-};
 
 const EventDetails = ({ event }) => (
   <View style={styles.container}>

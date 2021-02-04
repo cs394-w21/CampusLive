@@ -1,18 +1,14 @@
 import React from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
-import { textFont, eventCard } from "../../constants/Styles";
-import EventCalendarItem from "./EventCalendarItem"
+import { StyleSheet, ScrollView } from "react-native";
+import EventCalendarItem from "./EventCalendarItem";
 
 const EventCalendarList = ({ selectedDay, markedEvents }) => (
-
-
-  <ScrollView style={styles.container} >
+  <ScrollView style={styles.container}>
     {selectedDay &&
       markedEvents[selectedDay] &&
-      Object.values(markedEvents[selectedDay]).map(
-        (event) => <EventCalendarItem event={event} key={event.title} />
-      )}
-
+      Object.values(markedEvents[selectedDay]).map((event) => (
+        <EventCalendarItem event={event} key={event.title} />
+      ))}
   </ScrollView>
 );
 

@@ -9,11 +9,11 @@ const CalendarArrow = ({ direction }) =>
   direction === "left" ? (
     <Entypo name="chevron-left" size={20} color="black" />
   ) : (
-      <Entypo name="chevron-right" size={20} color="black" />
-    );
+    <Entypo name="chevron-right" size={20} color="black" />
+  );
 
 const EventCalendar = ({ markedEvents, selectedDay, setSelectedDay }) => {
-  console.log(Object.entries(markedEvents));
+  // console.log(Object.entries(markedEvents));
   const markedDatesArr = Object.entries(markedEvents).map(([date, events]) => {
     const markedDatesInput = {
       [date]: {
@@ -32,7 +32,7 @@ const EventCalendar = ({ markedEvents, selectedDay, setSelectedDay }) => {
     return markedDatesInput;
   });
   const markedDates = Object.assign({}, ...markedDatesArr);
-  console.log(markedDates);
+  // console.log(markedDates);
   const onDayPress = (day) => {
     setSelectedDay(day.dateString);
   };

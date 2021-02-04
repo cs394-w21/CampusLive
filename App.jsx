@@ -49,21 +49,18 @@ export default function App() {
           Object.entries(user.eventChoice).forEach(([eventId, choice]) => {
             eventsDb[eventId].choice = choice;
           });
-          let date = new Date(0);
+          let date;
           Object.keys(eventsDb).forEach((eventId) => {
             const event = eventsDb[eventId];
 
-            date = new Date(0);
-            // date.setUTCSeconds(event.startDateTime.seconds);
-            date.setUTCSeconds(event.startTime.seconds);
-            event.startDateTime = date;
-            event.startDateString = formatDateToString(date);
+            date = new Date(event.startDateTime.seconds * 1000);
+            eventsDb[eventId].startDateTime = date;
+            eventsDb[eventId].startDateString = formatDateToString(date);
+
             // TODO handle if no end date
-            date = new Date(0);
-            // date.setUTCSeconds(event.endDateTime.seconds);
-            date.setUTCSeconds(event.endTime.seconds);
-            event.endDateTime = date;
-            event.endDateString = formatDateToString(date);
+            date = new Date(event.endDateTime.seconds * 1000);
+            eventsDb[eventId].endDateTime = date;
+            eventsDb[eventId].endDateString = formatDateToString(date);
           });
           setEvents(eventsDb);
         }

@@ -1,6 +1,6 @@
 /* eslint-disable react/style-prop-object */
 import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet, SafeAreaView, ScrollView } from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import EventsContext from "../utils/EventsContext";
 import Banner from "../components/Banner";

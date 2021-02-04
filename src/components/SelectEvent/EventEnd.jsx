@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Button, View, Text } from "react-native";
 import { textFont, eventCard } from "../../constants/Styles";
-import { windowWidth, windowHeight } from "../../constants/WindowSize";
+import { windowWidth } from "../../constants/WindowSize";
 
 const TitleField = ({ value }) => (
   <View>
@@ -36,11 +36,10 @@ const styles = StyleSheet.create({
     width: windowWidth * 0.5,
     justifyContent: "center",
     padding: 10,
-    maxHeight: 50
+    maxHeight: 50,
   },
   button: {
     width: 6,
-
   },
 });
 
