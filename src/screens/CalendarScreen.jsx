@@ -1,6 +1,6 @@
 /* eslint-disable react/style-prop-object */
 import React, { useContext, useState, useEffect } from "react";
-import { StyleSheet, SafeAreaView } from "react-native";
+import { StyleSheet, View, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Banner from "../components/Banner";
 import EventsContext from "../utils/EventsContext";
@@ -34,11 +34,15 @@ const CalendarScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Banner />
-      <EventCalendar
-        markedEvents={markedEvents}
-        selectedDay={selectedDay}
-        setSelectedDay={setSelectedDay}
-      />
+      <View  >
+        <EventCalendar
+          markedEvents={markedEvents}
+          selectedDay={selectedDay}
+          setSelectedDay={setSelectedDay}
+
+        />
+      </View>
+
       <EventCalendarList
         selectedDay={selectedDay}
         markedEvents={markedEvents}

@@ -2,18 +2,18 @@ import React from "react";
 import { Calendar } from "react-native-calendars";
 import { Entypo } from "@expo/vector-icons";
 import { StyleSheet } from 'react-native';
-import { windowWidth } from "../../constants/WindowSize";
-import { textFont } from "../../constants/Styles";
+import { windowWidth, windowHeight } from "../../constants/WindowSize";
+import { textFont, eventCard } from "../../constants/Styles";
 
-const dot = { color: "blue", selectedDotColor: "yellow" };
+const dot = { color: "#4e2a84", selectedDotColor: "white" };
 
 // TODO: change color?
 const CalendarArrow = ({ direction }) =>
   direction === "left" ? (
     <Entypo name="chevron-left" size={20} color="black" />
   ) : (
-    <Entypo name="chevron-right" size={20} color="black" />
-  );
+      <Entypo name="chevron-right" size={20} color="black" />
+    );
 
 const EventCalendar = ({ markedEvents, selectedDay, setSelectedDay }) => {
   // console.log(Object.entries(markedEvents));
@@ -25,12 +25,12 @@ const EventCalendar = ({ markedEvents, selectedDay, setSelectedDay }) => {
           key: `${date}_${eventId}`,
         })),
         selected: date === selectedDay,
-        selectedColor: "blue",
+        selectedColor: "#7AC0E6",
       },
     };
     // eslint-disable-next-line no-prototype-builtins
     if (!markedEvents.hasOwnProperty(selectedDay)) {
-      markedDatesInput[selectedDay] = { selected: true, selectedColor: "blue" };
+      markedDatesInput[selectedDay] = { selected: true, selectedColor: "#7AC0E6" };
     }
     return markedDatesInput;
   });
@@ -53,10 +53,22 @@ const EventCalendar = ({ markedEvents, selectedDay, setSelectedDay }) => {
 
 const styles = StyleSheet.create({
   calendarStyle: {
-    borderWidth: 2,
-    borderColor: 'gray',
+    //...eventCard,
     width: windowWidth * .8,
-    fontFamily: textFont
+    fontFamily: textFont,
+    backgroundColor: "#fff",
+    borderRadius: 5,
+    marginHorizontal: windowWidth * 0.1,
+    marginTop: Math.min(25, windowWidth * 0.1),
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
+    padding: 15,
+
   }
 });
 
