@@ -24,29 +24,29 @@ const formatTime = (date) =>
     hour12: true,
   });
 
+const formatDate = (date) =>
+  date.toLocaleDateString([], {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+  });
+
 const formatDateToString = (date) =>
   `${date.getFullYear()}-${formatNumber(date.getMonth() + 1)}-${formatNumber(
     date.getDate()
   )}`;
 
-const formatDateTimeToString = (date) => {
-  let dateTime = "";
-  dateTime += `${dayOfWeekMap[date.getDay()]}, `;
-  dateTime += `${monthMap[date.getMonth()]} `;
-  dateTime += `${date.getDate()}, `;
-  dateTime += formatTime(date);
-
-  return dateTime;
-};
+const formatDateTimeToString = (date) =>
+  `${formatDate(date)} ${formatTime(date)}`;
 
 const formatTimeRangeToString = (startDateTime, endDateTime) => {
-  let dateRange = "";
-  dateRange += formatTime(startDateTime);
+  let timeRange = "";
+  timeRange += formatTime(startDateTime);
   if (endDateTime) {
-    dateRange += ` - ${formatTime(endDateTime)}`;
+    timeRange += ` - ${formatTime(endDateTime)}`;
   }
 
-  return dateRange;
+  return timeRange;
 };
 
 const formatDateTimeRangeToString = (startDateTime, endDateTime) => {
