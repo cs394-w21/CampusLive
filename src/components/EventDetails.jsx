@@ -33,6 +33,7 @@ const EventDetails = ({ event }) => (
       <TimeField
         text={formatDateTimeToString(event.startDateTime)}
         icon="calendar"
+        textStyle={styles.textStyle}
       />
       <Field value={event.description} />
     </ScrollView>
@@ -78,6 +79,10 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 10,
+  },
+  textStyle: {
+    fontFamily: textFont,
+    fontSize: 20,
   },
 });
 

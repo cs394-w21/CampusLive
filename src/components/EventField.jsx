@@ -4,10 +4,10 @@ import { Entypo } from "@expo/vector-icons";
 import { textFont } from "../constants/Styles";
 
 // TODO: Anchor icons so it doesn't move when swiping
-const EventField = ({ text, icon }) => (
+const EventField = ({ text, icon, textStyle }) => (
   <View style={styles.fieldContainer}>
     <Entypo name={icon} size={20} color="black" style={styles.icon} />
-    <Text style={styles.text}>{text}</Text>
+    <Text style={textStyle}>{text}</Text>
   </View>
 );
 
@@ -20,10 +20,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 10,
-  },
-  text: {
-    fontFamily: textFont,
-    fontSize: 20
   },
 });
 

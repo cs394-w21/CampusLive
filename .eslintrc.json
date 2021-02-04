@@ -1,26 +1,23 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "airbnb", "prettier"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "eslint:recommended",
-        "airbnb",
-        "prettier"
-    ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "rules": {
-        "arrow-body-style": ["error", "as-needed"],
-        "no-use-before-define": ["error", { "variables": false }],
-        "react/prop-types": 0,
-        "react/jsx-fragments": 0,
-        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
-    }
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "arrow-body-style": ["error", "as-needed"],
+    "no-use-before-define": ["error", { "variables": false }],
+    "react/prop-types": 0,
+    "react/jsx-fragments": 0,
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "react/jsx-one-expression-per-line": 0
+  }
 }
