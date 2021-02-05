@@ -5,19 +5,18 @@ import Moment from "moment";
 import Form from "../Form";
 import { eventUploadBackground } from "../../constants/CreateEventConstants";
 import firebase from "../../utils/firebase";
-
-const dateRegex = /^(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])\/(2[0-9]) ([0-9]|1[012]):([0-5][0-9]) (AM|PM)/;
+import { dateTimeRegex } from "../../utils/Dates";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().label("Title"),
   host: Yup.string().required().label("Host"),
   location: Yup.string().required().label("Location"),
   startDateTime: Yup.string()
-    .matches(dateRegex, "Date must be in format MM/DD/YY HH:MM AM")
+    .matches(dateTimeRegex, "Date must be in format MM/DD/YY HH:MM AM")
     .required()
     .label("Start Date and Time"),
   endDateTime: Yup.string()
-    .matches(dateRegex, "Date must be in format MM/DD/YY HH:MM AM")
+    .matches(dateTimeRegex, "Date must be in format MM/DD/YY HH:MM AM")
     // eslint-disable-next-line func-names
     .test("is-greater", "End should be after start", function (value) {
       const { startDateTime } = this.parent;
