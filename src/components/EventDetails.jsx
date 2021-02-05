@@ -13,10 +13,10 @@ const TitleField = ({ value }) => (
   </View>
 );
 
-const TimeField = ({ text, icon }) => (
+const TimeField = ({ text, icon, textStyle }) => (
   <View style={styles.fieldContainer}>
-    <Entypo name={icon} size={20} color="black" style={styles.icon} />
-    <Text style={styles.text}>{text}</Text>
+    <Entypo name={icon} size={18} color="black" style={styles.icon} />
+    <Text style={textStyle}>{text}</Text>
   </View>
 );
 
@@ -29,7 +29,7 @@ const EventDetails = ({ event }) => (
         style={styles.image}
         resizeMode="contain"
       />
-      <EventField text={event.location} icon="location-pin" />
+      <EventField text={event.location} icon="location-pin" textStyle={styles.textStyle}/>
       <TimeField
         text={formatDateTimeToString(event.startDateTime)}
         icon="calendar"
@@ -67,10 +67,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  text: {
-    fontFamily: textFont,
-    fontSize: 15,
-  },
   fieldContainer: {
     padding: 5,
     flex: 1,
@@ -82,7 +78,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     fontFamily: textFont,
-    fontSize: 20,
+    fontSize: 17,
   },
 });
 

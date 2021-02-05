@@ -6,7 +6,7 @@ import { textFont } from "../constants/Styles";
 // TODO: Anchor icons so it doesn't move when swiping
 const EventField = ({ text, icon, textStyle }) => (
   <View style={styles.fieldContainer}>
-    <Entypo name={icon} size={20} color="black" style={styles.icon} />
+    <Entypo name={icon} size={18} color="black" style={styles.icon} />
     <Text style={textStyle}>{text}</Text>
   </View>
 );
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     padding: 5,
     flex: 1,
     flexDirection: "row",
-    alignContent: "center",
+    alignContent: "center"
   },
   icon: {
     marginRight: 10,

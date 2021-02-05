@@ -24,7 +24,7 @@ const EventCalendarItem = ({ event }) => {
                         <Text style={styles.hostNameStyle}>{event.host}</Text>
                     </View>
                 </View>
-                <Text >
+                <Text style={styles.timeStyle}>
                     {formatTimeRangeToString(event.startDateTime, event.endDateTime)}
                 </Text>
                 <Text style={styles.descriptionStyle}>
@@ -95,11 +95,12 @@ const styles = StyleSheet.create({
     },
     plusMinus: {
         flexDirection: "row-reverse",
-        alignItems: "right",
         textAlignVertical: "bottom",
 
     },
-
+    timeStyle: {
+        fontFamily: textFont
+    }
 
 });
 
