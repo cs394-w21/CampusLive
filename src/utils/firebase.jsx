@@ -16,4 +16,11 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+const loginWithEmail = (email, password) =>
+  firebase.auth().signInWithEmailAndPassword(email, password);
+
+const registerWithEmail = (email, password) =>
+  firebase.auth().createUserWithEmailAndPassword(email, password);
+
 export default firebase;
+export { loginWithEmail, registerWithEmail };

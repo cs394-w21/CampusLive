@@ -6,10 +6,11 @@ import { Entypo } from "@expo/vector-icons";
 import firebase from "./src/utils/firebase";
 import UserContext from "./src/utils/UserContext";
 import EventsContext from "./src/utils/EventsContext";
-import SelectEventScreen from "./src/screens/SelectEventScreen";
-import DisplayEventScreen from "./src/screens/DisplayEventScreen";
-import CreateEventScreen from "./src/screens/CreateEventScreen";
+import AccountScreen from "./src/screens/AccountScreen";
 import CalendarScreen from "./src/screens/CalendarScreen";
+import CreateEventScreen from "./src/screens/CreateEventScreen";
+import DisplayEventScreen from "./src/screens/DisplayEventScreen";
+import SelectEventScreen from "./src/screens/SelectEventScreen";
 import { formatDateToString } from "./src/utils/Dates";
 
 const Tab = createBottomTabNavigator();
@@ -80,18 +81,6 @@ export default function App() {
       <EventsContext.Provider value={{ events, setEvents }}>
         <NavigationContainer>
           <Tab.Navigator
-            screenOptions={{
-              headerStyle: {
-                backgroundColor: "#4E2A84",
-              },
-              headerTitle: "CampusLive",
-              headerLeft: null,
-              headerTintColor: "#fff",
-              headerTitleAlign: "center",
-              headerTitleStyle: {
-                fontSize: 32,
-              },
-            }}
             tabBarOptions={{ showIcon: true }}
             initialRouteName="SelectEventScreen"
           >
@@ -116,6 +105,16 @@ export default function App() {
               }}
             />
             <Tab.Screen
+              name="CalendarScreen"
+              component={CalendarScreen}
+              options={{
+                title: "Calendar",
+                tabBarIcon: () => (
+                  <Entypo name="calendar" size={20} color="black" />
+                ),
+              }}
+            />
+            <Tab.Screen
               name="CreateEventScreen"
               component={CreateEventScreen}
               options={{
@@ -126,13 +125,11 @@ export default function App() {
               }}
             />
             <Tab.Screen
-              name="CalendarScreen"
-              component={CalendarScreen}
+              name="AccountScreen"
+              component={AccountScreen}
               options={{
-                title: "Your Event Calendar",
-                tabBarIcon: () => (
-                  <Entypo name="calendar" size={20} color="red" />
-                ),
+                title: "Account",
+                tabBarIcon: () => <Entypo name="user" size={20} color="red" />,
               }}
             />
           </Tab.Navigator>
