@@ -15,6 +15,8 @@ const monthMap = [
   "Dec",
 ];
 
+const dateRegex = /^(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])\/(2[0-9]) ([0-9]|1[012]):([0-5][0-9]) (AM|PM)/;
+
 const formatNumber = (number) => (number < 10 ? `0${number}` : number);
 
 const formatTime = (date) =>
@@ -65,4 +67,5 @@ export {
   formatTime,
   formatDateTimeRangeToString,
   formatTimeRangeToString,
+  dateRegex,
 };

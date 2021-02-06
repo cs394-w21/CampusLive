@@ -5,8 +5,7 @@ import Moment from "moment";
 import Form from "../Form";
 import { eventUploadBackground } from "../../constants/CreateEventConstants";
 import firebase from "../../utils/firebase";
-
-const dateRegex = /^(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])\/(2[0-9]) ([0-9]|1[012]):([0-5][0-9]) (AM|PM)/;
+import { dateRegex } from "../../utils/Dates";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().label("Title"),

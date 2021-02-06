@@ -17,9 +17,10 @@ const Tab = createBottomTabNavigator();
 enableScreens();
 
 const adminUID = "admin";
+const MILLISECOND_OFFSET = 1000;
 
 export default function App() {
-  // const [auth, setAuth] = useState();
+  const [auth, setAuth] = useState();
   const [user, setUser] = useState(null);
   const [events, setEvents] = useState();
 
@@ -35,11 +36,11 @@ export default function App() {
     };
   }, []);
 
-  // useEffect(() => {
-  //   firebase.auth().onAuthStateChanged((auth) => {
-  //     setAuth(auth);
-  //   });
-  // });
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((auth) => {
+      setAuth(auth);
+    });
+  });
 
   useEffect(() => {
     if (user && user.uid) {
@@ -54,12 +55,12 @@ export default function App() {
           Object.keys(eventsDb).forEach((eventId) => {
             const event = eventsDb[eventId];
 
-            date = new Date(event.startDateTime.seconds * 1000);
+            date = new Date(event.startDateTime.seconds * MILLISECOND_OFFSET);
             eventsDb[eventId].startDateTime = date;
             eventsDb[eventId].startDateString = formatDateToString(date);
 
             // TODO handle if no end date
-            date = new Date(event.endDateTime.seconds * 1000);
+            date = new Date(event.endDateTime.seconds * MILLISECOND_OFFSET);
             eventsDb[eventId].endDateTime = date;
             eventsDb[eventId].endDateString = formatDateToString(date);
           });
@@ -74,7 +75,7 @@ export default function App() {
     }
     setEvents(null);
     return undefined;
-  }, [user]);
+  }, [user, auth]);
 
   return (
     <UserContext.Provider value={user}>
@@ -129,7 +130,9 @@ export default function App() {
               component={AccountScreen}
               options={{
                 title: "Account",
-                tabBarIcon: () => <Entypo name="user" size={20} color="red" />,
+                tabBarIcon: () => (
+                  <Entypo name="user" size={20} color="black" />
+                ),
               }}
             />
           </Tab.Navigator>
