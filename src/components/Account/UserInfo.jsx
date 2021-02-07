@@ -4,9 +4,8 @@ import Form from "../Form";
 import { windowWidth } from "../../constants/WindowSize";
 import firebase from "../../utils/firebase";
 import UserContext from "../../utils/UserContext";
-import Colors from "../Forms/colors";
 
-const LoginForm = ({ navigation }) => {
+const UserInfo = () => {
   const { user } = useContext(UserContext);
   const [signOutError, setSignOutError] = useState("");
 
@@ -26,16 +25,6 @@ const LoginForm = ({ navigation }) => {
         }}
         onSubmit={handleSignOut}
       >
-        {/* <Form.Field
-          name="email"
-          leftIcon="email"
-          placeholder="Email"
-          autoCapitalize="none"
-          keyboardType="email-address"
-          textContentType="emailAddress"
-          editable={false}
-          placeholderTextColor={Colors.lightGrey}
-        /> */}
         <Form.Button title="Sign Out" style={styles.signOutButton} />
         <Form.ErrorMessage error={signOutError} visible />
       </Form>
@@ -55,4 +44,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginForm;
+export default UserInfo;

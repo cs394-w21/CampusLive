@@ -48,7 +48,7 @@ const LoginRegisterContainer = ({
 };
 // eslint-disable-next-line no-unused-vars
 const AccountScreen = ({ navigation }) => {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   // false = register, true = login
   const [loginType, setLoginType] = useState(true);
 
