@@ -28,7 +28,7 @@ export default function App() {
     if (auth && auth.uid) {
       const db = firebase.database().ref("users").child(auth.uid);
       const handleData = (snap) => {
-        setUser({ uid: auth.uid, ...snap.val() });
+        setUser({ uid: auth.uid, ...snap.val(), email: auth.email });
       };
       // eslint-disable-next-line no-alert
       db.on("value", handleData, (error) => alert(error));
@@ -51,14 +51,11 @@ export default function App() {
       const handleData = (snap) => {
         const eventsDb = snap.val();
         if (eventsDb) {
-          if (user.eventChoice) {
-            Object.entries(user.eventChoice)
-              // eslint-disable-next-line no-prototype-builtins
-              .filter(([eventId]) => eventsDb.hasOwnProperty(eventId))
-              .forEach(([eventId, choice]) => {
-                eventsDb[eventId].choice = choice;
-              });
-          }
+          Object.entries(user.eventChoices)
+            .filter(([eventId]) => eventsDb.hasOwnProperty(eventId))
+            .forEach(([eventId, choice]) => {
+              eventsDb[eventId].choice = choice;
+            });
 
           let date;
           Object.keys(eventsDb).forEach((eventId) => {
@@ -87,7 +84,7 @@ export default function App() {
   }, [user, auth]);
 
   return (
-    <UserContext.Provider value={user}>
+    <UserContext.Provider value={{ user, setUser }}>
       <EventsContext.Provider value={{ events, setEvents }}>
         <NavigationContainer>
           <Tab.Navigator

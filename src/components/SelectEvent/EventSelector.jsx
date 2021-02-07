@@ -4,6 +4,8 @@ import EventsContext from "../../utils/EventsContext";
 import EventDetails from "../EventDetails";
 import EventEnd from "./EventEnd";
 import EventChoiceButtons from "./EventChoiceButtons";
+import firebase from "../../utils/firebase";
+import UserContext from "../../utils/UserContext";
 
 // BUG: After we've toggled choice, if we choose "no" when viewing again we wont' progress through events.
 const getDispEvents = (events, choice) =>
@@ -11,7 +13,6 @@ const getDispEvents = (events, choice) =>
   Object.keys(events)
     .filter(
       (event) =>
-        // eslint-disable-next-line no-prototype-builtins
         !events[event].hasOwnProperty("choice") ||
         (choice && !events[event].choice)
     )
@@ -44,6 +45,7 @@ const EventDisplay = ({
 // TODO: Swipe again doesn't work
 const EventSelector = () => {
   const { events, setEvents } = useContext(EventsContext);
+  const { user, setUser } = useContext(UserContext);
   const [eventIndex, setEventIndex] = useState(0);
   const [dispNoToggle, setDispNoToggle] = useState(false);
 
@@ -54,8 +56,16 @@ const EventSelector = () => {
   const dispEvents = getDispEvents(events, dispNoToggle);
   const event = Object.keys(dispEvents)[0];
 
-  // Send to user
   const handleEventChoice = (choice) => {
+    user.eventChoices[event] = choice;
+    setUser(user);
+    firebase
+      .database()
+      .ref("users")
+      .child(user.uid)
+      .child("eventChoices")
+      .set(user.eventChoices)
+      .catch((error) => console.log(error));
     events[event].choice = choice;
     setEvents(events);
     setEventIndex(eventIndex + 1);

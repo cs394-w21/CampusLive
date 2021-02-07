@@ -11,6 +11,7 @@ import { StatusBar } from "expo-status-bar";
 import Banner from "../components/Banner";
 import LoginForm from "../components/Account/LoginForm";
 import RegisterForm from "../components/Account/RegisterForm";
+import UserInfo from "../components/Account/UserInfo";
 import UserContext from "../utils/UserContext";
 
 const LoginRegisterContainer = ({
@@ -37,8 +38,7 @@ const LoginRegisterContainer = ({
 );
 // eslint-disable-next-line no-unused-vars
 const AccountScreen = ({ navigation }) => {
-  const user = useContext(UserContext);
-  console.log(user);
+  const { user, setUser } = useContext(UserContext);
   // false = register, true = login
   const [loginType, setLoginType] = useState(true);
 
@@ -47,11 +47,15 @@ const AccountScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Banner />
-      <LoginRegisterContainer
-        loginType={loginType}
-        handleChangeLogin={handleChangeLogin}
-        navigation={navigation}
-      />
+      {user && user.uid ? (
+        <UserInfo />
+      ) : (
+        <LoginRegisterContainer
+          loginType={loginType}
+          handleChangeLogin={handleChangeLogin}
+          navigation={navigation}
+        />
+      )}
       <StatusBar style="auto" />
     </SafeAreaView>
   );

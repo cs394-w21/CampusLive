@@ -17,7 +17,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const newUserProps = {
-  eventChoice: { testEvent: false },
+  eventChoices: { testEvent: false },
   role: "user",
 };
 
@@ -80,20 +80,14 @@ const RegisterForm = ({ navigation }) => {
         secureTextEntry
         textContentType="password"
       />
-      <Form.Button title="Register" style={styles.loginButton} />
+      <Form.Button title="Register" style={styles.registerButton} />
       <Form.ErrorMessage error={registerError} visible />
     </Form>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#E4E0EE",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  loginButton: {
+  registerButton: {
     width: windowWidth * 0.2,
   },
 });

@@ -18,7 +18,6 @@ const CalendarScreen = ({ navigation }) => {
       Object.entries(events)
         .filter(([, event]) => event.choice)
         .forEach(([id, event]) => {
-          // eslint-disable-next-line no-prototype-builtins
           if (!tempMarkedEvents.hasOwnProperty(event.startDateString)) {
             tempMarkedEvents[event.startDateString] = {};
           }
@@ -34,12 +33,11 @@ const CalendarScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Banner />
-      <View  >
+      <View>
         <EventCalendar
           markedEvents={markedEvents}
           selectedDay={selectedDay}
           setSelectedDay={setSelectedDay}
-
         />
       </View>
 

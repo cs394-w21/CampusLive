@@ -1,7 +1,7 @@
 import React from "react";
 import { Calendar } from "react-native-calendars";
 import { Entypo } from "@expo/vector-icons";
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 import { windowWidth, windowHeight } from "../../constants/WindowSize";
 import { textFont, eventCard } from "../../constants/Styles";
 
@@ -12,8 +12,8 @@ const CalendarArrow = ({ direction }) =>
   direction === "left" ? (
     <Entypo name="chevron-left" size={20} color="black" />
   ) : (
-      <Entypo name="chevron-right" size={20} color="black" />
-    );
+    <Entypo name="chevron-right" size={20} color="black" />
+  );
 
 const EventCalendar = ({ markedEvents, selectedDay, setSelectedDay }) => {
   // console.log(Object.entries(markedEvents));
@@ -28,9 +28,11 @@ const EventCalendar = ({ markedEvents, selectedDay, setSelectedDay }) => {
         selectedColor: "#7AC0E6",
       },
     };
-    // eslint-disable-next-line no-prototype-builtins
     if (!markedEvents.hasOwnProperty(selectedDay)) {
-      markedDatesInput[selectedDay] = { selected: true, selectedColor: "#7AC0E6" };
+      markedDatesInput[selectedDay] = {
+        selected: true,
+        selectedColor: "#7AC0E6",
+      };
     }
     return markedDatesInput;
   });
@@ -54,7 +56,7 @@ const EventCalendar = ({ markedEvents, selectedDay, setSelectedDay }) => {
 const styles = StyleSheet.create({
   calendarStyle: {
     //...eventCard,
-    width: windowWidth * .8,
+    width: windowWidth * 0.8,
     fontFamily: textFont,
     backgroundColor: "#fff",
     borderRadius: 5,
@@ -68,8 +70,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 10,
     padding: 15,
-
-  }
+  },
 });
 
 export default EventCalendar;
