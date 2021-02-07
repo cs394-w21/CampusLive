@@ -16,6 +16,11 @@ const validationSchema = Yup.object().shape({
     .oneOf([Yup.ref("password"), null], "Passwords must match"),
 });
 
+const newUserProps = {
+  eventChoice: { testEvent: false },
+  role: "user",
+};
+
 const registerWithEmail = (email, password) =>
   firebase.auth().createUserWithEmailAndPassword(email, password);
 
@@ -27,7 +32,12 @@ const RegisterForm = ({ navigation }) => {
     const { email, password } = values;
     setRegisterError(null);
     try {
-      await registerWithEmail(email, password);
+      const authCred = await registerWithEmail(email, password);
+      firebase
+        .database()
+        .ref("users")
+        .child(authCred.user.uid)
+        .set(newUserProps);
       navigation.navigate("SelectEventScreen");
     } catch (error) {
       setRegisterError(error.message);

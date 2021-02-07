@@ -52,9 +52,12 @@ export default function App() {
         const eventsDb = snap.val();
         if (eventsDb) {
           if (user.eventChoice) {
-            Object.entries(user.eventChoice).forEach(([eventId, choice]) => {
-              eventsDb[eventId].choice = choice;
-            });
+            Object.entries(user.eventChoice)
+              // eslint-disable-next-line no-prototype-builtins
+              .filter(([eventId]) => eventsDb.hasOwnProperty(eventId))
+              .forEach(([eventId, choice]) => {
+                eventsDb[eventId].choice = choice;
+              });
           }
 
           let date;
