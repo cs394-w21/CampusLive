@@ -16,7 +16,7 @@ import { formatDateToString } from "./src/utils/Dates";
 const Tab = createBottomTabNavigator();
 enableScreens();
 
-const adminUID = "admin";
+// const adminUID = "admin";
 const MILLISECOND_OFFSET = 1000;
 
 export default function App() {
@@ -40,8 +40,8 @@ export default function App() {
   }, [auth]);
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((auth) => {
-      setAuth(auth);
+    firebase.auth().onAuthStateChanged((newAuth) => {
+      setAuth(newAuth);
     });
   });
 
