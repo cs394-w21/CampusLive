@@ -15,9 +15,7 @@ const DisplayEventScreen = ({ navigation }) => {
     const listener = navigation.addListener("focus", () => {
       const tempEvents = Object.keys(events)
         .filter((key) => events[key].choice)
-        .map((event) => (
-          <EventDetails key={events[event].id} event={events[event]} />
-        ));
+        .map((event) => <EventDetails key={event} event={events[event]} />);
       setDispEvents(tempEvents);
     });
 

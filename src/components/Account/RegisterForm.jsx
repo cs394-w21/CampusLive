@@ -19,15 +19,16 @@ const validationSchema = Yup.object().shape({
 const registerWithEmail = (email, password) =>
   firebase.auth().createUserWithEmailAndPassword(email, password);
 
-const RegisterForm = () => {
+const RegisterForm = ({ navigation }) => {
   const [registerError, setRegisterError] = useState("");
 
+  // on register set up their eventChoice fields
   const handleSignUp = async (values) => {
     const { email, password } = values;
     setRegisterError(null);
     try {
       await registerWithEmail(email, password);
-      // navigation.navigate("SelectEventScreen");
+      navigation.navigate("SelectEventScreen");
     } catch (error) {
       setRegisterError(error.message);
     }
@@ -46,7 +47,7 @@ const RegisterForm = () => {
       <Form.Field
         name="email"
         leftIcon="email"
-        placeholder="Enter email"
+        placeholder="Email"
         autoCapitalize="none"
         keyboardType="email-address"
         textContentType="emailAddress"
@@ -54,7 +55,7 @@ const RegisterForm = () => {
       <Form.Field
         name="password"
         leftIcon="lock"
-        placeholder="Enter password"
+        placeholder="Password"
         autoCapitalize="none"
         autoCorrect={false}
         secureTextEntry

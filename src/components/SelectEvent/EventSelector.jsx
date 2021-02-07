@@ -54,6 +54,7 @@ const EventSelector = () => {
   const dispEvents = getDispEvents(events, dispNoToggle);
   const event = Object.keys(dispEvents)[0];
 
+  // Send to user
   const handleEventChoice = (choice) => {
     events[event].choice = choice;
     setEvents(events);

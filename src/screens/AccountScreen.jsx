@@ -1,5 +1,5 @@
 /* eslint-disable react/style-prop-object */
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -11,10 +11,19 @@ import { StatusBar } from "expo-status-bar";
 import Banner from "../components/Banner";
 import LoginForm from "../components/Account/LoginForm";
 import RegisterForm from "../components/Account/RegisterForm";
+import UserContext from "../utils/UserContext";
 
-const LoginRegisterContainer = ({ loginType, handleChangeLogin }) => (
+const LoginRegisterContainer = ({
+  loginType,
+  handleChangeLogin,
+  navigation,
+}) => (
   <View style={styles.formContainer}>
-    {loginType ? <LoginForm /> : <RegisterForm />}
+    {loginType ? (
+      <LoginForm navigation={navigation} />
+    ) : (
+      <RegisterForm navigation={navigation} />
+    )}
     <Text>
       {loginType ? "Don't have an account?" : "Already have an account?"}
     </Text>
@@ -28,6 +37,8 @@ const LoginRegisterContainer = ({ loginType, handleChangeLogin }) => (
 );
 // eslint-disable-next-line no-unused-vars
 const AccountScreen = ({ navigation }) => {
+  const user = useContext(UserContext);
+  console.log(user);
   // false = register, true = login
   const [loginType, setLoginType] = useState(true);
 
@@ -39,6 +50,7 @@ const AccountScreen = ({ navigation }) => {
       <LoginRegisterContainer
         loginType={loginType}
         handleChangeLogin={handleChangeLogin}
+        navigation={navigation}
       />
       <StatusBar style="auto" />
     </SafeAreaView>

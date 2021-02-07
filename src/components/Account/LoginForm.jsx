@@ -10,7 +10,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required("No password provided").label("Password"),
 });
 
-const LoginForm = () => {
+const LoginForm = ({ navigation }) => {
   const [loginError, setLoginError] = useState("");
 
   const loginWithEmail = (email, password) =>
@@ -21,7 +21,7 @@ const LoginForm = () => {
     setLoginError(null);
     try {
       await loginWithEmail(email, password);
-      // navigation.navigate("SelectEventScreen");
+      navigation.navigate("SelectEventScreen");
     } catch (error) {
       setLoginError(error.message);
     }
@@ -39,7 +39,7 @@ const LoginForm = () => {
       <Form.Field
         name="email"
         leftIcon="email"
-        placeholder="Enter email"
+        placeholder="Email"
         autoCapitalize="none"
         keyboardType="email-address"
         textContentType="emailAddress"
@@ -47,7 +47,7 @@ const LoginForm = () => {
       <Form.Field
         name="password"
         leftIcon="lock"
-        placeholder="Enter password"
+        placeholder="Password"
         autoCapitalize="none"
         autoCorrect={false}
         secureTextEntry

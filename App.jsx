@@ -25,16 +25,19 @@ export default function App() {
   const [events, setEvents] = useState();
 
   useEffect(() => {
-    const db = firebase.database().ref("users").child(adminUID);
-    const handleData = (snap) => {
-      setUser({ uid: adminUID, ...snap.val() });
-    };
-    // eslint-disable-next-line no-alert
-    db.on("value", handleData, (error) => alert(error));
-    return () => {
-      db.off("value", handleData);
-    };
-  }, []);
+    if (auth && auth.uid) {
+      const db = firebase.database().ref("users").child(auth.uid);
+      const handleData = (snap) => {
+        setUser({ uid: auth.uid, ...snap.val() });
+      };
+      // eslint-disable-next-line no-alert
+      db.on("value", handleData, (error) => alert(error));
+      return () => {
+        db.off("value", handleData);
+      };
+    }
+    setUser(null);
+  }, [auth]);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((auth) => {
@@ -48,9 +51,12 @@ export default function App() {
       const handleData = (snap) => {
         const eventsDb = snap.val();
         if (eventsDb) {
-          Object.entries(user.eventChoice).forEach(([eventId, choice]) => {
-            eventsDb[eventId].choice = choice;
-          });
+          if (user.eventChoice) {
+            Object.entries(user.eventChoice).forEach(([eventId, choice]) => {
+              eventsDb[eventId].choice = choice;
+            });
+          }
+
           let date;
           Object.keys(eventsDb).forEach((eventId) => {
             const event = eventsDb[eventId];
