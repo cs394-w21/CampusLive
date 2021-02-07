@@ -18,24 +18,34 @@ const LoginRegisterContainer = ({
   loginType,
   handleChangeLogin,
   navigation,
-}) => (
-  <View style={styles.formContainer}>
-    {loginType ? (
-      <LoginForm navigation={navigation} />
-    ) : (
-      <RegisterForm navigation={navigation} />
-    )}
-    <Text>
-      {loginType ? "Don't have an account?" : "Already have an account?"}
-    </Text>
-    <TouchableOpacity
-      onPress={handleChangeLogin}
-      style={{ borderWidth: 3, borderColor: "black" }}
-    >
-      <Text>{loginType ? "Register" : "Login"}</Text>
-    </TouchableOpacity>
-  </View>
-);
+  user,
+}) => {
+  if (user && user.uid) {
+    return (
+      <View style={styles.formContainer}>
+        <UserInfo />
+      </View>
+    );
+  }
+  return (
+    <View style={styles.formContainer}>
+      {loginType ? (
+        <LoginForm navigation={navigation} />
+      ) : (
+        <RegisterForm navigation={navigation} />
+      )}
+      <Text>
+        {loginType ? "Don't have an account?" : "Already have an account?"}
+      </Text>
+      <TouchableOpacity
+        onPress={handleChangeLogin}
+        style={{ borderWidth: 3, borderColor: "black" }}
+      >
+        <Text>{loginType ? "Register" : "Login"}</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 // eslint-disable-next-line no-unused-vars
 const AccountScreen = ({ navigation }) => {
   const { user, setUser } = useContext(UserContext);
@@ -47,15 +57,12 @@ const AccountScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Banner />
-      {user && user.uid ? (
-        <UserInfo />
-      ) : (
-        <LoginRegisterContainer
-          loginType={loginType}
-          handleChangeLogin={handleChangeLogin}
-          navigation={navigation}
-        />
-      )}
+      <LoginRegisterContainer
+        loginType={loginType}
+        handleChangeLogin={handleChangeLogin}
+        navigation={navigation}
+        user={user}
+      />
       <StatusBar style="auto" />
     </SafeAreaView>
   );

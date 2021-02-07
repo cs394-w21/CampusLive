@@ -46,9 +46,9 @@ const LoginForm = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#E4E0EE",
-    alignItems: "center",
-    justifyContent: "center",
+    // backgroundColor: "#E4E0EE",
+    // alignItems: "center",
+    // justifyContent: "center",
   },
   signOutButton: {
     width: windowWidth * 0.2,
