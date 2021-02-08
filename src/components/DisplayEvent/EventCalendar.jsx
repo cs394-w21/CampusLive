@@ -55,7 +55,6 @@ const styles = StyleSheet.create({
   calendarStyle: {
     //...eventCard,
     width: windowWidth * .8,
-    fontFamily: textFont,
     backgroundColor: "#fff",
     borderRadius: 5,
     marginHorizontal: windowWidth * 0.1,
