@@ -6,14 +6,19 @@ import EventEnd from "./EventEnd";
 import EventChoiceButtons from "./EventChoiceButtons";
 
 // BUG: After we've toggled choice, if we choose "no" when viewing again we wont' progress through events.
-const getDispEvents = (events, choice) =>
+const getDispEvents = (events, choice, selectionIndex) =>
   events &&
   Object.keys(events)
     .filter(
       (event) =>
         // eslint-disable-next-line no-prototype-builtins
-        !events[event].hasOwnProperty("choice") ||
-        (choice && !events[event].choice)
+        (!events[event].hasOwnProperty("choiceIndex")
+          || events[event].choiceIndex < selectionIndex)
+        && (choice === null ||
+          events[event].choice === choice)
+      // (choice === null && !events[event].hasOwnProperty("choice"))
+      // || (!events[event].choice === choice)
+      // !event || events[event].choiceRound < choiceRound
     )
     .reduce((acc, event) => {
       acc[event] = events[event];
@@ -42,26 +47,33 @@ const EventDisplay = ({
 };
 
 // TODO: Swipe again doesn't work
-const EventSelector = () => {
+const EventSelector = ({ displayTypeToggle, setDisplayTypeToggle }) => {
   const { events, setEvents } = useContext(EventsContext);
-  const [eventIndex, setEventIndex] = useState(0);
-  const [dispNoToggle, setDispNoToggle] = useState(false);
+  const [eventSelectionIndex, setEventSelectionIndex] = useState({ "individual": 0, "round": 0 });
 
   if (!events) {
     return <Text>Loading...</Text>;
   }
 
-  const dispEvents = getDispEvents(events, dispNoToggle);
+  const dispEvents = getDispEvents(events, displayTypeToggle, eventSelectionIndex.round);
   const event = Object.keys(dispEvents)[0];
 
   const handleEventChoice = (choice) => {
     events[event].choice = choice;
+    events[event].choiceIndex = eventSelectionIndex.round;
     setEvents(events);
-    setEventIndex(eventIndex + 1);
+    setEventSelectionIndex({
+      "individual": eventSelectionIndex.individual + 1,
+      "round": eventSelectionIndex.round
+    });
   };
 
-  const viewAgainPress = () => {
-    setDispNoToggle(true);
+  const viewAgainPress = (type) => {
+    setEventSelectionIndex({
+      "individual": eventSelectionIndex.individual,
+      "round": eventSelectionIndex.round + 1
+    });
+    setDisplayTypeToggle(type);
   };
 
   return (

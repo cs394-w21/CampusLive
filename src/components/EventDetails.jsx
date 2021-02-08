@@ -29,7 +29,7 @@ const EventDetails = ({ event }) => (
         style={styles.image}
         resizeMode="contain"
       />
-      <EventField text={event.location} icon="location-pin" textStyle={styles.textStyle}/>
+      <EventField text={event.location} icon="location-pin" textStyle={styles.textStyle} />
       <TimeField
         text={formatDateTimeToString(event.startDateTime)}
         icon="calendar"

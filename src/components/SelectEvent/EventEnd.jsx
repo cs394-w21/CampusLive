@@ -11,13 +11,12 @@ const TitleField = ({ value }) => (
 
 const EventEnd = ({ viewAgainPress }) => (
   <View style={styles.container}>
-    <TitleField value="No events to view." />
+    <TitleField value="No left events to view." />
     <View style={styles.buttonView}>
       <Button
         style={styles.button}
         onPress={viewAgainPress}
         title="Swipe again"
-        disabled
       />
     </View>
   </View>
