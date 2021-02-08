@@ -19,7 +19,7 @@ const UserInfo = () => {
   return (
     <View styles={styles.container}>
       <Text>Welcome {user.email}!</Text>
-      <Form onSubmit={handleSignOut}>
+      <Form initialValues={{}} onSubmit={handleSignOut}>
         <Form.Button title="Sign Out" style={styles.signOutButton} />
         <Form.ErrorMessage error={signOutError} visible />
       </Form>
@@ -30,9 +30,6 @@ const UserInfo = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: "#E4E0EE",
-    // alignItems: "center",
-    // justifyContent: "center",
   },
   signOutButton: {
     width: windowWidth * 0.2,

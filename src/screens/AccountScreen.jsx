@@ -1,12 +1,6 @@
 /* eslint-disable react/style-prop-object */
 import React, { useState, useContext } from "react";
-import {
-  StyleSheet,
-  SafeAreaView,
-  View,
-  TouchableOpacity,
-  Text,
-} from "react-native";
+import { StyleSheet, SafeAreaView, View, Text } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Banner from "../components/Banner";
 import LoginForm from "../components/Account/LoginForm";
@@ -14,6 +8,7 @@ import RegisterForm from "../components/Account/RegisterForm";
 import UserInfo from "../components/Account/UserInfo";
 import UserContext from "../utils/UserContext";
 import { windowWidth } from "../constants/WindowSize";
+import Form from "../components/Form";
 
 const LoginRegisterContainer = ({
   loginType,
@@ -38,14 +33,12 @@ const LoginRegisterContainer = ({
       <Text style={styles.changeLoginText}>
         {loginType ? "Don't have an account?" : "Already have an account?"}
       </Text>
-      <TouchableOpacity
-        onPress={handleChangeLogin}
-        style={{ borderWidth: 3, borderColor: "black" }}
-      >
-        <Text style={styles.changeLoginButtonText}>
-          {loginType ? "Register" : "Login"}
-        </Text>
-      </TouchableOpacity>
+      <Form initialValues={{}} onSubmit={handleChangeLogin}>
+        <Form.Button
+          title={loginType ? "Register" : "Login"}
+          style={styles.changeLoginButton}
+        />
+      </Form>
     </View>
   );
 };
