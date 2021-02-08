@@ -63,9 +63,18 @@ const EventSelector = ({ displayTypeToggle, setDisplayTypeToggle }) => {
     displayTypeToggle,
     eventSelectionIndex.round
   );
+  console.log(dispEvents);
   const event = Object.keys(dispEvents)[0];
 
   const handleEventChoice = (choice) => {
+    events[event].choice = choice;
+    events[event].choiceIndex = eventSelectionIndex.round;
+    setEvents(events);
+    setEventSelectionIndex({
+      individual: eventSelectionIndex.individual + 1,
+      round: eventSelectionIndex.round,
+    });
+
     if (user) {
       user.eventChoices[event] = choice;
       setUser(user);
@@ -79,13 +88,7 @@ const EventSelector = ({ displayTypeToggle, setDisplayTypeToggle }) => {
         .catch((error) => console.log(error));
     }
 
-    events[event].choice = choice;
-    events[event].choiceIndex = eventSelectionIndex.round;
-    setEvents(events);
-    setEventSelectionIndex({
-      individual: eventSelectionIndex.individual + 1,
-      round: eventSelectionIndex.round,
-    });
+
   };
 
   const viewAgainPress = (type) => {

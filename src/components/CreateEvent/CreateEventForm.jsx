@@ -17,13 +17,14 @@ const validationSchema = Yup.object().shape({
     .label("Start Date and Time"),
   endDateTime: Yup.string()
     .matches(dateRegex, "Date must be in format MM/DD/YY HH:MM AM")
+    .required()
     // eslint-disable-next-line func-names
     .test("is-greater", "End should be after start", function (value) {
       const { startDateTime } = this.parent;
       return value && value !== ""
         ? Moment(value, "MM/DD/YY hh:mm a").isAfter(
-            Moment(startDateTime, "MM/DD/YY hh:mm a")
-          )
+          Moment(startDateTime, "MM/DD/YY hh:mm a")
+        )
         : true;
     })
     .label("End Date and Time"),

@@ -52,6 +52,7 @@ export default function App() {
       const eventsDb = snap.val();
       if (eventsDb) {
         if (user && user.uid) {
+          console.log(user.eventChoices);
           Object.entries(user.eventChoices)
             .filter(([eventId]) => eventsDb.hasOwnProperty(eventId))
             .forEach(([eventId, choice]) => {
@@ -80,11 +81,12 @@ export default function App() {
     return () => {
       db.off("value", handleData);
     };
-  }, [user]);
+  }, []);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <EventsContext.Provider value={{ events, setEvents }}>
+
         <NavigationContainer>
           <Tab.Navigator
             tabBarOptions={{ showIcon: true }}
@@ -142,6 +144,8 @@ export default function App() {
             />
           </Tab.Navigator>
         </NavigationContainer>
+
+
       </EventsContext.Provider>
     </UserContext.Provider>
   );

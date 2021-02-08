@@ -22,7 +22,7 @@ const SwipeAgainButton = ({ text, style, onPress }) => (
 
 const EventEnd = ({ viewAgainPress }) => (
   <View style={styles.container}>
-    <TitleField value="No left events to view." />
+    <TitleField value="No events left to view." />
     <Text style={styles.subHeader}>
       Swipe again on...
     </Text>
