@@ -3,7 +3,7 @@ import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { textFont } from "../../constants/Styles";
 
-const EventChoiceButton = ({ icon, choice, handleEventChoice, buttonType}) => (
+const EventChoiceButton = ({ icon, choice, handleEventChoice, buttonType }) => (
   <TouchableOpacity
     onPress={() => handleEventChoice(choice)}
     style={buttonType === "accept" ? styles.acceptButton : styles.declineButton}
@@ -28,7 +28,7 @@ const EventChoiceButtons = ({ handleEventChoice }) => (
     />
   </View>
 );
-// TODO: move this to the styles file
+
 const choiceButton = {
   flex: 1,
   marginTop: 0,
@@ -44,7 +44,6 @@ const choiceButton = {
   opacity: 0.8,
 };
 
-// TODO: Change button sizes
 const styles = StyleSheet.create({
   buttonView: {
     flex: 1,

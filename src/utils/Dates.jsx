@@ -1,20 +1,4 @@
 /* eslint-disable import/prefer-default-export */
-const dayOfWeekMap = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const monthMap = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "June",
-  "July",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-
 const dateRegex = /^(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])\/(2[0-9]) ([0-9]|1[012]):([0-5][0-9]) (AM|PM)/;
 
 const formatNumber = (number) => (number < 10 ? `0${number}` : number);

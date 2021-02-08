@@ -24,7 +24,6 @@ const CalendarScreen = ({ navigation }) => {
           tempMarkedEvents[event.startDateString][id] = event;
         });
       setMarkedEvents(tempMarkedEvents);
-      // console.log(tempMarkedEvents);
     });
 
     return listener;

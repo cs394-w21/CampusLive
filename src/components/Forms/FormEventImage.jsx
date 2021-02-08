@@ -9,18 +9,13 @@ import {
 } from "react-native";
 import { useFormikContext } from "formik";
 import * as ImagePicker from "expo-image-picker";
-// import FormErrorMessage from "./FormErrorMessage";
 import { windowWidth } from "../../constants/WindowSize";
 import { textFont } from "../../constants/Styles";
 import { eventUploadBackground } from "../../constants/CreateEventConstants";
 import uploadImage from "../../utils/UploadImage";
 
-// TODO: Keeping base64 of the an image is super laggy bc the field is humongous
 const FormEventImage = ({ name }) => {
-  const {
-    setFieldValue,
-    values,
-  } = useFormikContext();
+  const { setFieldValue, values } = useFormikContext();
 
   useEffect(() => {
     (async () => {
@@ -57,7 +52,6 @@ const FormEventImage = ({ name }) => {
         .then(async (r) => {
           const data = await r.json();
           // eslint-disable-next-line no-console
-          console.log("url: ", data.secure_url);
           setFieldValue(name, data.secure_url);
         })
         .catch((err) => {

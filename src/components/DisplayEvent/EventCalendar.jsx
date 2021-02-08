@@ -7,7 +7,6 @@ import { textFont } from "../../constants/Styles";
 
 const dot = { color: "#4e2a84", selectedDotColor: "white" };
 
-// TODO: change color?
 const CalendarArrow = ({ direction }) =>
   direction === "left" ? (
     <Entypo name="chevron-left" size={20} color="black" />
@@ -16,7 +15,6 @@ const CalendarArrow = ({ direction }) =>
   );
 
 const EventCalendar = ({ markedEvents, selectedDay, setSelectedDay }) => {
-  // console.log(Object.entries(markedEvents));
   const markedDatesArr = Object.entries(markedEvents).map(([date, events]) => {
     const markedDatesInput = {
       [date]: {
@@ -37,7 +35,6 @@ const EventCalendar = ({ markedEvents, selectedDay, setSelectedDay }) => {
     return markedDatesInput;
   });
   const markedDates = Object.assign({}, ...markedDatesArr);
-  // console.log(markedDates);
   const onDayPress = (day) => {
     setSelectedDay(day.dateString);
   };
