@@ -2,8 +2,8 @@ import React from "react";
 import { Calendar } from "react-native-calendars";
 import { Entypo } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
-import { windowWidth, windowHeight } from "../../constants/WindowSize";
-import { textFont, eventCard } from "../../constants/Styles";
+import { windowWidth } from "../../constants/WindowSize";
+import { textFont } from "../../constants/Styles";
 
 const dot = { color: "#4e2a84", selectedDotColor: "white" };
 
@@ -55,7 +55,6 @@ const EventCalendar = ({ markedEvents, selectedDay, setSelectedDay }) => {
 
 const styles = StyleSheet.create({
   calendarStyle: {
-    //...eventCard,
     width: windowWidth * 0.8,
     fontFamily: textFont,
     backgroundColor: "#fff",

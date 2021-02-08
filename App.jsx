@@ -103,9 +103,9 @@ export default function App() {
               name="DisplayEventScreen"
               component={DisplayEventScreen}
               options={{
-                title: "My Events",
+                title: "Your Events",
                 tabBarIcon: () => (
-                  <Entypo name="calendar" size={20} color="black" />
+                  <Entypo name="bar-graph" size={20} color="black" />
                 ),
               }}
             />
@@ -113,7 +113,7 @@ export default function App() {
               name="CalendarScreen"
               component={CalendarScreen}
               options={{
-                title: "Calendar",
+                title: "Your Calendar",
                 tabBarIcon: () => (
                   <Entypo name="calendar" size={20} color="black" />
                 ),

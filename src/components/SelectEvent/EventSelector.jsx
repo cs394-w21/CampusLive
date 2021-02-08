@@ -7,14 +7,15 @@ import EventChoiceButtons from "./EventChoiceButtons";
 import firebase from "../../utils/firebase";
 import UserContext from "../../utils/UserContext";
 
-// BUG: After we've toggled choice, if we choose "no" when viewing again we wont' progress through events.
-const getDispEvents = (events, choice) =>
+const getDispEvents = (events, choice, selectionIndex) =>
   events &&
   Object.keys(events)
     .filter(
       (event) =>
-        !events[event].hasOwnProperty("choice") ||
-        (choice && !events[event].choice)
+        // eslint-disable-next-line no-prototype-builtins
+        (!events[event].hasOwnProperty("choiceIndex") ||
+          events[event].choiceIndex < selectionIndex) &&
+        (choice === null || events[event].choice === choice)
     )
     .reduce((acc, event) => {
       acc[event] = events[event];
@@ -27,7 +28,6 @@ const EventDisplay = ({
   handleEventChoice,
   viewAgainPress,
 }) => {
-  // console.log(event);
   if (!event) {
     return <EventEnd viewAgainPress={viewAgainPress} />;
   }
@@ -42,37 +42,58 @@ const EventDisplay = ({
   );
 };
 
-// TODO: Swipe again doesn't work
-const EventSelector = () => {
+const EventSelector = ({ displayTypeToggle, setDisplayTypeToggle }) => {
   const { events, setEvents } = useContext(EventsContext);
   const { user, setUser } = useContext(UserContext);
-  const [eventIndex, setEventIndex] = useState(0);
-  const [dispNoToggle, setDispNoToggle] = useState(false);
+  const [eventSelectionIndex, setEventSelectionIndex] = useState({
+    individual: 0,
+    round: 0,
+  });
 
   if (!events) {
-    return <Text>Loading...</Text>;
+    return (
+      <View style={styles.container}>
+        <Text>Loading...</Text>
+      </View>
+    );
   }
 
-  const dispEvents = getDispEvents(events, dispNoToggle);
+  const dispEvents = getDispEvents(
+    events,
+    displayTypeToggle,
+    eventSelectionIndex.round
+  );
   const event = Object.keys(dispEvents)[0];
 
   const handleEventChoice = (choice) => {
-    user.eventChoices[event] = choice;
-    setUser(user);
-    firebase
-      .database()
-      .ref("users")
-      .child(user.uid)
-      .child("eventChoices")
-      .set(user.eventChoices)
-      .catch((error) => console.log(error));
+    if (user) {
+      user.eventChoices[event] = choice;
+      setUser(user);
+      firebase
+        .database()
+        .ref("users")
+        .child(user.uid)
+        .child("eventChoices")
+        .set(user.eventChoices)
+        // eslint-disable-next-line no-console
+        .catch((error) => console.log(error));
+    }
+
     events[event].choice = choice;
+    events[event].choiceIndex = eventSelectionIndex.round;
     setEvents(events);
-    setEventIndex(eventIndex + 1);
+    setEventSelectionIndex({
+      individual: eventSelectionIndex.individual + 1,
+      round: eventSelectionIndex.round,
+    });
   };
 
-  const viewAgainPress = () => {
-    setDispNoToggle(true);
+  const viewAgainPress = (type) => {
+    setEventSelectionIndex({
+      individual: eventSelectionIndex.individual,
+      round: eventSelectionIndex.round + 1,
+    });
+    setDisplayTypeToggle(type);
   };
 
   return (
