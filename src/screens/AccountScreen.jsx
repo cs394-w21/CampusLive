@@ -13,6 +13,7 @@ import LoginForm from "../components/Account/LoginForm";
 import RegisterForm from "../components/Account/RegisterForm";
 import UserInfo from "../components/Account/UserInfo";
 import UserContext from "../utils/UserContext";
+import { windowWidth } from "../constants/WindowSize";
 
 const LoginRegisterContainer = ({
   loginType,
@@ -34,14 +35,16 @@ const LoginRegisterContainer = ({
       ) : (
         <RegisterForm navigation={navigation} />
       )}
-      <Text>
+      <Text style={styles.changeLoginText}>
         {loginType ? "Don't have an account?" : "Already have an account?"}
       </Text>
       <TouchableOpacity
         onPress={handleChangeLogin}
         style={{ borderWidth: 3, borderColor: "black" }}
       >
-        <Text>{loginType ? "Register" : "Login"}</Text>
+        <Text style={styles.changeLoginButtonText}>
+          {loginType ? "Register" : "Login"}
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -77,6 +80,16 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     flex: 1,
+  },
+  changeLoginButton: {
+    width: windowWidth * 0.2,
+  },
+  changeLoginText: {
+    textAlign: "center",
+  },
+  changeLoginButtonText: {
+    textAlign: "center",
+    fontSize: 20,
   },
 });
 

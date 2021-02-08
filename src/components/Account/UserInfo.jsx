@@ -19,12 +19,7 @@ const UserInfo = () => {
   return (
     <View styles={styles.container}>
       <Text>Welcome {user.email}!</Text>
-      <Form
-        initialValues={{
-          email: user.email,
-        }}
-        onSubmit={handleSignOut}
-      >
+      <Form onSubmit={handleSignOut}>
         <Form.Button title="Sign Out" style={styles.signOutButton} />
         <Form.ErrorMessage error={signOutError} visible />
       </Form>

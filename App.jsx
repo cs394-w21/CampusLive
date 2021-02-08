@@ -46,42 +46,40 @@ export default function App() {
   });
 
   useEffect(() => {
-    if (user && user.uid) {
-      const db = firebase.database().ref("events");
-      const handleData = (snap) => {
-        const eventsDb = snap.val();
-        if (eventsDb) {
+    const db = firebase.database().ref("events");
+    const handleData = (snap) => {
+      const eventsDb = snap.val();
+      if (eventsDb) {
+        if (user && user.uid) {
           Object.entries(user.eventChoices)
             .filter(([eventId]) => eventsDb.hasOwnProperty(eventId))
             .forEach(([eventId, choice]) => {
               eventsDb[eventId].choice = choice;
             });
-
-          let date;
-          Object.keys(eventsDb).forEach((eventId) => {
-            const event = eventsDb[eventId];
-
-            date = new Date(event.startDateTime.seconds * MILLISECOND_OFFSET);
-            eventsDb[eventId].startDateTime = date;
-            eventsDb[eventId].startDateString = formatDateToString(date);
-
-            // TODO handle if no end date
-            date = new Date(event.endDateTime.seconds * MILLISECOND_OFFSET);
-            eventsDb[eventId].endDateTime = date;
-            eventsDb[eventId].endDateString = formatDateToString(date);
-          });
-          setEvents(eventsDb);
         }
-      };
-      // eslint-disable-next-line no-console
-      db.on("value", handleData, (error) => console.log(error));
-      return () => {
-        db.off("value", handleData);
-      };
-    }
-    setEvents(null);
-    return undefined;
-  }, [user, auth]);
+
+        let date;
+        Object.keys(eventsDb).forEach((eventId) => {
+          const event = eventsDb[eventId];
+
+          date = new Date(event.startDateTime.seconds * MILLISECOND_OFFSET);
+          eventsDb[eventId].startDateTime = date;
+          eventsDb[eventId].startDateString = formatDateToString(date);
+
+          // TODO handle if no end date
+          date = new Date(event.endDateTime.seconds * MILLISECOND_OFFSET);
+          eventsDb[eventId].endDateTime = date;
+          eventsDb[eventId].endDateString = formatDateToString(date);
+        });
+        setEvents(eventsDb);
+      }
+    };
+    // eslint-disable-next-line no-console
+    db.on("value", handleData, (error) => console.log(error));
+    return () => {
+      db.off("value", handleData);
+    };
+  }, [user]);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
